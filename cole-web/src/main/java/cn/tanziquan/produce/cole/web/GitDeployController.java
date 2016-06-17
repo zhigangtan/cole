@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 /**
  * GitDeployController
  *
- * @author zhigang.tan@ele.me
  * @version 0.0.1
  */
 @RestController

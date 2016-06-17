@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * PingController
  *
- * @author zhigang.tan@ele.me
  * @version 0.0.1
  */
 @RestController
