@@ -9,6 +9,8 @@
     <modules>
         <module>cole-parent</module>
         <module>cole-web</module>
+        <module>cole-kernel</module>
+        <module>cole-data</module>
     </modules>
     <packaging>pom</packaging>
 

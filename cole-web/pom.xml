@@ -12,8 +12,15 @@
     <artifactId>cole-web</artifactId>
     <version>1.0</version>
 
+    <properties>
+        <cole-kernel.version>0.0.1-SNAPSHOT</cole-kernel.version>
+    </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>cn.tanziquan.produce</groupId>
+            <artifactId>cole-kernel</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,6 +59,16 @@
     </dependencies>
 
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.tanziquan.produce</groupId>
+                <artifactId>cole-kernel</artifactId>
+                <version>${cole-kernel.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
     <build>
         <plugins>
             <plugin>
