@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class WebConfig {
-
     @Bean
     public JettyEmbeddedServletContainerFactory embeddedServletContainerFactory() {
         JettyEmbeddedServletContainerFactory factory = new JettyEmbeddedServletContainerFactory(9010);
