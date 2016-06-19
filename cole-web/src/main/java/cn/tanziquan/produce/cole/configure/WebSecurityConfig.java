@@ -1,4 +1,4 @@
-package cn.tanziquan.produce.cole.config;
+package cn.tanziquan.produce.cole.configure;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

@@ -14,13 +14,16 @@
     <properties>
         <cole-data.version>0.0.1-SNAPSHOT</cole-data.version>
     </properties>
-    
+
     <dependencies>
+        <dependency>
+            <groupId>cn.tanziquan.produce</groupId>
+            <artifactId>cole-data</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -34,7 +37,6 @@
                 <version>${cole-data.version}</version>
             </dependency>
         </dependencies>
-
     </dependencyManagement>
 
 </project>

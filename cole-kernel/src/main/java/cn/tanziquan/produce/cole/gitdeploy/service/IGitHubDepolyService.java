@@ -1,7 +1,5 @@
 package cn.tanziquan.produce.cole.gitdeploy.service;
 
-import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubRequestBodyDto;
-
 /**
  * IGitHubDepolyService
  *
@@ -10,5 +8,5 @@ import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubRequestBodyDto;
  */
 public interface IGitHubDepolyService {
 
-    void gitDepoly(String appId, GitHubRequestBodyDto dto);
+    void gitDepoly(String appId, String json);
 }

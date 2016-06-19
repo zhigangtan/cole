@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry
+		location="/Users/zhigangtan/.m2/repository/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar" />
+	<context id="leapDb" targetRuntime="MyBatis3">
+
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+		<!-- 此处是将Example改名为Criteria 当然 想改成什么都行~ -->
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+		<!-- 注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+		</commentGenerator>
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://qdm107498573.my3w.com/qdm107498573_db" userId="qdm107498573"
+			password="qdm107498573">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="cn.tanziquan.produce.cole.data.domain"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="cn.tanziquan.produce.cole.data.persistence"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+							 targetPackage="cn.tanziquan.produce.cole.data.persistence" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="dm_tag_info" domainObjectName="TagInfo">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="type" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+		</table>
+		<table tableName="tb_restaurant_attribute" domainObjectName="RestaurantAttribute">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+
+		</table>
+		<table tableName="tb_category_info" domainObjectName="CategoryInfo">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="source" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+
+		</table>
+		<table tableName="tb_cole_request_body" domainObjectName="ColeRequestBody">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="source" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+		</table>
+
+	</context>
+</generatorConfiguration>

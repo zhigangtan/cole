@@ -1,4 +1,4 @@
-package cn.tanziquan.produce.cole.config;
+package cn.tanziquan.produce.cole.configure;
 
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;

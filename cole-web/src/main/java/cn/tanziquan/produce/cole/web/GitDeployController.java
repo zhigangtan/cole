@@ -24,7 +24,7 @@ public class GitDeployController {
     private IGitHubDepolyService gitHubDepolyService;
 
     @RequestMapping(value = "/github/{appId:.+}", method = RequestMethod.POST)
-    public void deploy(@PathVariable(value = "appId") String appId, @RequestBody GitHubRequestBodyDto bodyDto) {
+    public void deploy(@PathVariable(value = "appId") String appId, @RequestBody String bodyDto) {
         logger.info("appId:{},bodyDto:{}", appId, bodyDto);
         gitHubDepolyService.gitDepoly(appId, bodyDto);
     }
