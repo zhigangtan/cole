@@ -6,7 +6,7 @@
               value="%d{HH:mm:ss} [%15.15t{14}] %cyan(%-40.40logger{39}) [%highlight(%-5level)] %m%n%wex"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
-    
+
     <property name="LOG_FILE" value="/data/log/produce.cole/app.log}"/>
     <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
 
