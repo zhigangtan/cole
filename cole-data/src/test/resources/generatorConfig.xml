@@ -60,17 +60,21 @@
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 
 		</table>
-		<table tableName="tb_app_group_relation" domainObjectName="AppGroupRelation">
+		<table tableName="tb_project_group_relation" domainObjectName="ProjectGroupRelation">
 			<columnOverride column="is_delete" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 
 		</table>
-		<table tableName="tb_app_group" domainObjectName="AppGroup">
+		<table tableName="tb_group_info" domainObjectName="GroupInfo">
 			<columnOverride column="is_delete" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 		</table>
-
+		<table tableName="tb_project_info" domainObjectName="ProjectInfo">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+		</table>
 	</context>
 </generatorConfiguration>

@@ -1,6 +1,10 @@
 environments:
     db:
         driverClassName: com.mysql.jdbc.Driver
-        jdbcUrl: jdbc:mysql://qdm107498573.my3w.com/qdm107498573_db
-        jdbcUser: qdm107498573
-        jdbcPwd: qdm107498573
+        #jdbcUrl: jdbc:mysql://qdm107498573.my3w.com/qdm107498573_db
+        jdbcUrl: jdbc:mysql://127.0.0.1/cole
+        jdbcUser: root
+        jdbcPwd:
+spring:
+    thymeleaf:
+        cache: false
