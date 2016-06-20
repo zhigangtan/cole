@@ -8,5 +8,5 @@ package cn.tanziquan.produce.cole.gitdeploy.service;
  */
 public interface IGitHubDepolyService {
 
-    void gitDepoly(String appId, String json);
+    void gitDepoly(String appNo, String json);
 }

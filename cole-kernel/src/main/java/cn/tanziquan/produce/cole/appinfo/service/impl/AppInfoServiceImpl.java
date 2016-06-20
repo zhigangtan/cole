@@ -31,5 +31,14 @@ public class AppInfoServiceImpl implements IAppInfoService {
         return appInfos;
     }
 
-
+    @Override
+    public AppInfo getAppInfoByAppNo(String appNo) {
+        AppInfoCriteria criteria = new AppInfoCriteria();
+        criteria.createCriteria().andIsDeleteEqualTo(Constant.NO_S).andAppNoEqualTo(appNo);
+        List<AppInfo> appInfos = appInfoMapper.selectByExample(criteria);
+        if (appInfos.size() > 0) {
+            return appInfos.get(0);
+        }
+        return null;
+    }
 }

@@ -1,7 +1,8 @@
 package cn.tanziquan.produce.cole.gitdeploy.service.impl;
 
+import cn.tanziquan.produce.cole.appinfo.service.IAppInfoService;
+import cn.tanziquan.produce.cole.data.domain.AppInfo;
 import cn.tanziquan.produce.cole.data.domain.AppWebhooksLog;
-import cn.tanziquan.produce.cole.data.persistence.AppInfoMapper;
 import cn.tanziquan.produce.cole.data.persistence.AppWebhooksLogMapper;
 import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubRequestBodyDto;
 import cn.tanziquan.produce.cole.gitdeploy.service.IGitHubDepolyService;
@@ -29,20 +30,24 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
 
 
     @Autowired
-    private AppInfoMapper appInfoMapper;
+    private IAppInfoService appInfoService;
 
     @Autowired
     private AppWebhooksLogMapper appWebhooksLogMapper;
 
 
     @Override
-    public void gitDepoly(String appId, String json) {
+    public void gitDepoly(String appNo, String json) {
         try {
+            AppInfo appInfo = appInfoService.getAppInfoByAppNo(appNo);
+            if (appInfo == null) {
+                return;
+            }
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             AppWebhooksLog record = new AppWebhooksLog();
-            //record.setAppId(appId);
+            record.setAppId(appInfo.getId());
             record.setContent(json);
             GitHubRequestBodyDto bodyDto = objectMapper.readValue(json, GitHubRequestBodyDto.class);
             appWebhooksLogMapper.insertSelective(record);

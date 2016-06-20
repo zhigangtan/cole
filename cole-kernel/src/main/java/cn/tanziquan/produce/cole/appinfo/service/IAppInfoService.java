@@ -14,4 +14,7 @@ public interface IAppInfoService {
 
 
     List<AppInfo> getAllAppInfo();
+
+
+    AppInfo getAppInfoByAppNo(String appNo);
 }
