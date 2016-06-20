@@ -19,12 +19,16 @@
 			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
 			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
 		</commentGenerator>
-		
+		<!--
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://qdm107498573.my3w.com/qdm107498573_db" userId="qdm107498573"
 			password="qdm107498573">
 		</jdbcConnection>
-
+-->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://127.0.0.1/cole" userId="root"
+						password="">
+		</jdbcConnection>
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
@@ -45,28 +49,25 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="dm_tag_info" domainObjectName="TagInfo">
+		<table tableName="tb_app_info" domainObjectName="AppInfo">
 			<columnOverride column="is_delete" javaType="Short" />
-			<columnOverride column="type" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 		</table>
-		<table tableName="tb_restaurant_attribute" domainObjectName="RestaurantAttribute">
+		<table tableName="tb_app_webhooks_log" domainObjectName="AppWebhooksLog">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+
+		</table>
+		<table tableName="tb_app_group_relation" domainObjectName="AppGroupRelation">
 			<columnOverride column="is_delete" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 
 		</table>
-		<table tableName="tb_category_info" domainObjectName="CategoryInfo">
+		<table tableName="tb_app_group" domainObjectName="AppGroup">
 			<columnOverride column="is_delete" javaType="Short" />
-			<columnOverride column="source" javaType="Short" />
-			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
-			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
-
-		</table>
-		<table tableName="tb_cole_request_body" domainObjectName="ColeRequestBody">
-			<columnOverride column="is_delete" javaType="Short" />
-			<columnOverride column="source" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 		</table>

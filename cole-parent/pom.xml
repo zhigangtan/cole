@@ -29,6 +29,12 @@
         <commons-codec.version>1.9</commons-codec.version>
         <!-- apache-common version end -->
 
+        <jackson.version>2.6.6</jackson.version>
+
+
+        <jcl-over-slf4j.version>1.7.21</jcl-over-slf4j.version>
+        <logback.version>1.1.7</logback.version>
+
     </properties>
 
     <dependencyManagement>
@@ -90,6 +96,25 @@
                 <version>${commons-pool2.version}</version>
             </dependency>
             <!--apache commons end-->
+
+            <!--json start-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!--json end-->
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${jcl-over-slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
