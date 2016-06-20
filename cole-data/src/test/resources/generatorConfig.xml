@@ -19,16 +19,17 @@
 			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
 			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
 		</commentGenerator>
-		<!--
+
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://qdm107498573.my3w.com/qdm107498573_db" userId="qdm107498573"
 			password="qdm107498573">
 		</jdbcConnection>
--->
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-						connectionURL="jdbc:mysql://127.0.0.1/cole" userId="root"
-						password="">
-		</jdbcConnection>
+		<!--
+            <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                            connectionURL="jdbc:mysql://127.0.0.1/cole" userId="root"
+                            password="">
+            </jdbcConnection>
+            -->
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
@@ -49,32 +50,34 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="tb_app_info" domainObjectName="AppInfo">
-			<columnOverride column="is_delete" javaType="Short" />
-			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
-			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
-		</table>
-		<table tableName="tb_app_webhooks_log" domainObjectName="AppWebhooksLog">
-			<columnOverride column="is_delete" javaType="Short" />
-			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
-			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
-
-		</table>
-		<table tableName="tb_project_group_relation" domainObjectName="ProjectGroupRelation">
-			<columnOverride column="is_delete" javaType="Short" />
-			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
-			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
-
-		</table>
-		<table tableName="tb_group_info" domainObjectName="GroupInfo">
-			<columnOverride column="is_delete" javaType="Short" />
-			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
-			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
-		</table>
 		<table tableName="tb_project_info" domainObjectName="ProjectInfo">
 			<columnOverride column="is_delete" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 		</table>
+		<table tableName="tb_app_info" domainObjectName="AppInfo">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+		</table>
+		<table tableName="tb_app_webhooks_record" domainObjectName="AppWebhooksRecord">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+
+		</table>
+
+		<table tableName="tb_app_release" domainObjectName="AppRelease">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+		</table>
+		<table tableName="tb_app_release_develop" domainObjectName="AppReleaseDevelop">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+
+		</table>
+
 	</context>
 </generatorConfiguration>
