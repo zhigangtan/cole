@@ -35,7 +35,7 @@ public class GitPullCommandHandler extends AbstractHandler {
             CommandLineHelper commandLineHelper = new CommandLineHelper();
             commandLineHelper.executeGitClone(workFile.getPath(), bodyDto.getRef(), repository.getHtml_url());
         } catch (Exception e) {
-            logger.error("git pull error", e);
+            logger.error("git pull error", e); 
         }
         return null;
     }
