@@ -6,7 +6,7 @@ environments:
         jdbcUser: qdm150698491
         jdbcPwd: qdm150698491
     build:
-         path: /data/produce.code/build
+         path: /data/produce.cole/build
 spring:
     thymeleaf:
         cache: false
