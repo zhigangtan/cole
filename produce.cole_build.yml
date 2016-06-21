@@ -1,0 +1,7 @@
+language: java
+sdk_version: oraclejdk8
+script:
+  - mvn -X -B -U   -ae clean install  -f cole-parent/pom.xml
+  - mvn -X -B -U   -fae clean install
+after_success:
+  - ./assembly.sh

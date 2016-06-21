@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @version 0.0.1
  */
 public class DateUtil {
-    
+
     public static java.sql.Timestamp getCurrentTimestamp() {
         return Timestamp.valueOf(LocalDateTime.now());
     }

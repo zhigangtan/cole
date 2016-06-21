@@ -21,8 +21,8 @@
 		</commentGenerator>
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://qdm107498573.my3w.com/qdm107498573_db" userId="qdm107498573"
-			password="qdm107498573">
+			connectionURL="jdbc:mysql://qdm150698491.my3w.com/qdm150698491_db" userId="qdm150698491"
+			password="qdm150698491">
 		</jdbcConnection>
 		<!--
             <jdbcConnection driverClass="com.mysql.jdbc.Driver"
