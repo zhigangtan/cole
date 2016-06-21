@@ -8,6 +8,7 @@ import cn.tanziquan.produce.cole.data.domain.AppWebhooksRecord;
 import cn.tanziquan.produce.cole.data.persistence.AppWebhooksRecordMapper;
 import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubRequestBodyDto;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.RequestConext;
+import cn.tanziquan.produce.cole.gitdeploy.handler.AppPackageHandler;
 import cn.tanziquan.produce.cole.gitdeploy.handler.GitPullCommandHandler;
 import cn.tanziquan.produce.cole.gitdeploy.service.IGitHubDepolyService;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -61,8 +62,10 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             RequestConext requestConext = new RequestConext();
             requestConext.setBodyDto(bodyDto);
             requestConext.setBuildPath(buildProperties.getPath());
-            GitPullCommandHandler handler = new GitPullCommandHandler();
-            handler.response(requestConext);
+            GitPullCommandHandler gitPullhandler = new GitPullCommandHandler();
+            AppPackageHandler packageHandler = new AppPackageHandler();
+            gitPullhandler.setNextHandler(packageHandler);
+            gitPullhandler.response(requestConext);
             appWebhooksRecordMapper.insertSelective(record);
         } catch (IOException e) {
             logger.error("gitDepoly error", e);

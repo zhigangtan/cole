@@ -4,10 +4,13 @@ import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubRequestBodyDto;
 import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubepositoryDto;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.RequestConext;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.ResponseDto;
+import cn.tanziquan.produce.cole.gitdeploy.helper.CommandLineHelper;
 import org.apache.commons.exec.*;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,28 +27,13 @@ public class GitPullCommandHandler extends AbstractHandler {
     @Override
     public ResponseDto response(RequestConext conext) {
         try {
+            String buildPath = conext.getBuildPath();
             GitHubRequestBodyDto bodyDto = conext.getBodyDto();
-            GitHubepositoryDto gitHubepositoryDto = bodyDto.getRepository();
-            Map map = new HashMap();
-            map.put("branch", "master");
-            map.put("url", gitHubepositoryDto.getHtml_url());
-            CommandLine cmdLine = new CommandLine("git");
-            cmdLine.addArgument("clone");
-            cmdLine.addArgument("-b");
-            cmdLine.addArgument("${branch}");
-            cmdLine.addArgument("${url}");
-            cmdLine.setSubstitutionMap(map);
-            DefaultExecutor executor = new DefaultExecutor();
-            DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
-            executor.setExitValue(1);
-            ExecuteWatchdog watchdog = new ExecuteWatchdog(60000);
-            PumpStreamHandler streamHandler=new PumpStreamHandler();
-            executor.setWatchdog(watchdog);
-            executor.setStreamHandler(streamHandler);
-            executor.execute(cmdLine, resultHandler);
-
-            int exitValue = resultHandler.getExitValue();
-
+            GitHubepositoryDto repository = bodyDto.getRepository();
+            File workFile = new File(buildPath + File.separator + repository.getName() + File.separator + bodyDto.getAfter());
+            FileUtils.forceMkdir(workFile);
+            CommandLineHelper commandLineHelper = new CommandLineHelper();
+            commandLineHelper.executeGitClone(workFile.getPath(), bodyDto.getRef(), repository.getHtml_url());
         } catch (Exception e) {
             logger.error("git pull error", e);
         }
