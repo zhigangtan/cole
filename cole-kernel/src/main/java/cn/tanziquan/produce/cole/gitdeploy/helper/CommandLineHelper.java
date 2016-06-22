@@ -32,7 +32,7 @@ public class CommandLineHelper {
             if(!workingDirectoryFile.exists()){
                 workingDirectoryFile.mkdirs();
             }
-            CommandLine cmdLine = new CommandLine("git  ");
+            CommandLine cmdLine = new CommandLine("git");
             cmdLine.addArgument("clone");
             cmdLine.addArgument("-b");
             cmdLine.addArgument("${branch}");
