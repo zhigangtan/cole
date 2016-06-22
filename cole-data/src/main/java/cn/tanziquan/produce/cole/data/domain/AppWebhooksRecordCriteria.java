@@ -582,72 +582,72 @@ public class AppWebhooksRecordCriteria {
         }
 
         public Criteria andCommitAuthorIsNull() {
-            addCriterion("\"commit_ author\" is null");
+            addCriterion("commit_author is null");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorIsNotNull() {
-            addCriterion("\"commit_ author\" is not null");
+            addCriterion("commit_author is not null");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorEqualTo(String value) {
-            addCriterion("\"commit_ author\" =", value, "commitAuthor");
+            addCriterion("commit_author =", value, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorNotEqualTo(String value) {
-            addCriterion("\"commit_ author\" <>", value, "commitAuthor");
+            addCriterion("commit_author <>", value, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorGreaterThan(String value) {
-            addCriterion("\"commit_ author\" >", value, "commitAuthor");
+            addCriterion("commit_author >", value, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorGreaterThanOrEqualTo(String value) {
-            addCriterion("\"commit_ author\" >=", value, "commitAuthor");
+            addCriterion("commit_author >=", value, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorLessThan(String value) {
-            addCriterion("\"commit_ author\" <", value, "commitAuthor");
+            addCriterion("commit_author <", value, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorLessThanOrEqualTo(String value) {
-            addCriterion("\"commit_ author\" <=", value, "commitAuthor");
+            addCriterion("commit_author <=", value, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorLike(String value) {
-            addCriterion("\"commit_ author\" like", value, "commitAuthor");
+            addCriterion("commit_author like", value, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorNotLike(String value) {
-            addCriterion("\"commit_ author\" not like", value, "commitAuthor");
+            addCriterion("commit_author not like", value, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorIn(List<String> values) {
-            addCriterion("\"commit_ author\" in", values, "commitAuthor");
+            addCriterion("commit_author in", values, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorNotIn(List<String> values) {
-            addCriterion("\"commit_ author\" not in", values, "commitAuthor");
+            addCriterion("commit_author not in", values, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorBetween(String value1, String value2) {
-            addCriterion("\"commit_ author\" between", value1, value2, "commitAuthor");
+            addCriterion("commit_author between", value1, value2, "commitAuthor");
             return (Criteria) this;
         }
 
         public Criteria andCommitAuthorNotBetween(String value1, String value2) {
-            addCriterion("\"commit_ author\" not between", value1, value2, "commitAuthor");
+            addCriterion("commit_author not between", value1, value2, "commitAuthor");
             return (Criteria) this;
         }
 
