@@ -1,5 +1,6 @@
 package cn.tanziquan.produce.cole.appinfo.service;
 
+import cn.tanziquan.produce.cole.appinfo.dto.AppMainDto;
 import cn.tanziquan.produce.cole.data.domain.AppInfo;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public interface IAppInfoService {
 
 
     AppInfo getAppInfoByAppNo(String appNo);
+
+
+    AppMainDto getAppMainDtoByAppNo(String appNo);
 }

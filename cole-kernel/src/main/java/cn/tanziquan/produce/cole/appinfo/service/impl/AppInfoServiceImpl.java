@@ -1,5 +1,6 @@
 package cn.tanziquan.produce.cole.appinfo.service.impl;
 
+import cn.tanziquan.produce.cole.appinfo.dto.AppMainDto;
 import cn.tanziquan.produce.cole.appinfo.service.IAppInfoService;
 import cn.tanziquan.produce.cole.basic.constant.Constant;
 import cn.tanziquan.produce.cole.data.domain.AppInfo;
@@ -39,6 +40,11 @@ public class AppInfoServiceImpl implements IAppInfoService {
         if (appInfos.size() > 0) {
             return appInfos.get(0);
         }
+        return null;
+    }
+
+    @Override
+    public AppMainDto getAppMainDtoByAppNo(String appNo) {
         return null;
     }
 }
