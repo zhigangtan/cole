@@ -11,6 +11,7 @@ import cn.tanziquan.produce.cole.gitdeploy.dto.handler.ResponseDto;
  */
 public abstract class AbstractHandler {
 
+
     private AbstractHandler nextHandler;
 
     public abstract ResponseDto response(RequestConext conext);

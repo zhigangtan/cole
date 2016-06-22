@@ -24,8 +24,9 @@
             </pattern>
         </encoder>
     </appender>
-    <logger name="org.springframework.boot" level="INFO"></logger>
     <logger name="org.eclipse" level="INFO"></logger>
+    <logger name="jndi" level="INFO"></logger>
+    <logger name="org.springframework" level="INFO"></logger>
     <root level="DEBUG">
         <appender-ref ref="EXTERNAL" />
         <appender-ref ref="STDOUT" />
