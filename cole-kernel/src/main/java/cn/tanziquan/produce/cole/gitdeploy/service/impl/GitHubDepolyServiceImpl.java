@@ -60,7 +60,6 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             GitHubHeadCommitDto hubHeadCommitDto = bodyDto.getHead_commit();
 
             String branch = StringUtils.removeStartIgnoreCase(bodyDto.getRef(), "refs/heads/");
-
             AppWebhooksRecord record = new AppWebhooksRecord();
             record.setAppId(appInfo.getId());
             record.setContent(json);
