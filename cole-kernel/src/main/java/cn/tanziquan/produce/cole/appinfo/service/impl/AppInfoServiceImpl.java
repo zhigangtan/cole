@@ -45,6 +45,9 @@ public class AppInfoServiceImpl implements IAppInfoService {
 
     @Override
     public AppMainDto getAppMainDtoByAppNo(String appNo) {
-        return null;
+        AppMainDto appMainDto = new AppMainDto();
+        AppInfo appInfo = getAppInfoByAppNo(appNo);
+        appMainDto.setAppNo(appInfo.getAppNo());
+        return appMainDto;
     }
 }
