@@ -5,7 +5,6 @@ import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubepositoryDto;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.RequestConext;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.ResponseDto;
 import cn.tanziquan.produce.cole.gitdeploy.helper.CommandLineHelper;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,8 +27,6 @@ public class GitPullCommandHandler extends AbstractHandler {
             GitHubRequestBodyDto bodyDto = conext.getBodyDto();
             GitHubepositoryDto repository = bodyDto.getRepository();
             File workFile = new File(buildPath + File.separator + repository.getName() + File.separator + bodyDto.getAfter());
-            FileUtils.forceMkdirParent(workFile);
-            FileUtils.forceMkdir(workFile);
             CommandLineHelper commandLineHelper = new CommandLineHelper();
             commandLineHelper.executeGitClone(workFile.getPath(), bodyDto.getRef(), repository.getHtml_url());
             conext.setCodePath(workFile.getPath());
