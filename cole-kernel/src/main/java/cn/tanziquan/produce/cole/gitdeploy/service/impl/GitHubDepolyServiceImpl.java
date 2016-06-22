@@ -70,7 +70,7 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             record.setCommitMessage(hubHeadCommitDto.getMessage());
             record.setFullName(bodyDto.getRepository().getFull_name());
             record.setBranch(branch);
-            
+
             RequestConext requestConext = new RequestConext();
             requestConext.setAppNo(appNo);
             requestConext.setBodyDto(bodyDto);
