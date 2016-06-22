@@ -17,6 +17,9 @@ public class BuildDto {
 
     private List<String> script;
 
+    private List<String> after_success;
+
+
     public String getLanguage() {
         return language;
     }
@@ -39,5 +42,13 @@ public class BuildDto {
 
     public void setScript(List<String> script) {
         this.script = script;
+    }
+
+    public List<String> getAfter_success() {
+        return after_success;
+    }
+
+    public void setAfter_success(List<String> after_success) {
+        this.after_success = after_success;
     }
 }
