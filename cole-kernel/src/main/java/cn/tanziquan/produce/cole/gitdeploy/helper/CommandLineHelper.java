@@ -29,6 +29,9 @@ public class CommandLineHelper {
         ByteArrayOutputStream errorStream = null;
         try {
             File workingDirectoryFile = new File(workingDirectory);
+            if(!workingDirectoryFile.exists()){
+                workingDirectoryFile.mkdirs();
+            }
             CommandLine cmdLine = new CommandLine("git  ");
             cmdLine.addArgument("clone");
             cmdLine.addArgument("-b");
