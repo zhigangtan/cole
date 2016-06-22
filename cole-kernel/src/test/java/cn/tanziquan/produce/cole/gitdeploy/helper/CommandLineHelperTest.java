@@ -12,7 +12,7 @@ public class CommandLineHelperTest {
     @Test
     public void executeGitClone() throws Exception {
         CommandLineHelper commandLineHelper=new CommandLineHelper();
-        commandLineHelper.executeGitClone("/project/tzgproject/test/","master","https://github.com/zhigangtan/cole.git");
+        commandLineHelper.executeGitClone("/project/tzgproject/test/","refs/heads/master","https://github.com/zhigangtan/cole.git");
 
     }
 
