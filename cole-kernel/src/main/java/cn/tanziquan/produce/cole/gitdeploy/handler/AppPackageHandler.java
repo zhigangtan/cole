@@ -49,7 +49,7 @@ public class AppPackageHandler extends AbstractHandler {
                     }
                 }
             }
-            FileUtils.forceDeleteOnExit(new File(codePath));
+            //  FileUtils.forceDeleteOnExit(new File(codePath));
         } catch (IOException e) {
             e.printStackTrace();
         }
