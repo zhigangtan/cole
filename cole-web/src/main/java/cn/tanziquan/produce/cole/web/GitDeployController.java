@@ -1,7 +1,6 @@
 package cn.tanziquan.produce.cole.web;
 
 
-import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubRequestBodyDto;
 import cn.tanziquan.produce.cole.gitdeploy.service.IGitHubDepolyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

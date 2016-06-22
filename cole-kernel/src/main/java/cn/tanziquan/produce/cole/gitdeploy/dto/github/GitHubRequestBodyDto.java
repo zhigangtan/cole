@@ -1,6 +1,7 @@
-package cn.tanziquan.produce.cole.gitdeploy.dto;
+package cn.tanziquan.produce.cole.gitdeploy.dto.github;
 
 import cn.tanziquan.produce.cole.basic.dto.BasicDto;
+import cn.tanziquan.produce.cole.gitdeploy.dto.github.GitHubepositoryDto;
 
 /**
  * GitHubRequestBodyDto
@@ -24,6 +25,9 @@ public class GitHubRequestBodyDto extends BasicDto {
 
 
     private GitHubepositoryDto repository;
+
+
+    private GitHubHeadCommitDto head_commit;
 
 
     public String getAfter() {
@@ -80,5 +84,13 @@ public class GitHubRequestBodyDto extends BasicDto {
 
     public void setRepository(GitHubepositoryDto repository) {
         this.repository = repository;
+    }
+
+    public GitHubHeadCommitDto getHead_commit() {
+        return head_commit;
+    }
+
+    public void setHead_commit(GitHubHeadCommitDto head_commit) {
+        this.head_commit = head_commit;
     }
 }

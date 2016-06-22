@@ -1,4 +1,4 @@
-package cn.tanziquan.produce.cole.gitdeploy.dto;
+package cn.tanziquan.produce.cole.gitdeploy.dto.github;
 
 import cn.tanziquan.produce.cole.basic.dto.BasicDto;
 

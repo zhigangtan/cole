@@ -1,6 +1,6 @@
 package cn.tanziquan.produce.cole.gitdeploy.dto.handler;
 
-import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubRequestBodyDto;
+import cn.tanziquan.produce.cole.gitdeploy.dto.github.GitHubRequestBodyDto;
 
 /**
  * RequestConext

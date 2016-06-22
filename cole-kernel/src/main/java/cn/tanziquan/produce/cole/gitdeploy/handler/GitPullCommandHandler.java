@@ -1,7 +1,7 @@
 package cn.tanziquan.produce.cole.gitdeploy.handler;
 
-import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubRequestBodyDto;
-import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubepositoryDto;
+import cn.tanziquan.produce.cole.gitdeploy.dto.github.GitHubRequestBodyDto;
+import cn.tanziquan.produce.cole.gitdeploy.dto.github.GitHubepositoryDto;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.RequestConext;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.ResponseDto;
 import cn.tanziquan.produce.cole.gitdeploy.helper.CommandLineHelper;

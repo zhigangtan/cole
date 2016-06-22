@@ -62,6 +62,7 @@
 		</table>
 		<table tableName="tb_app_webhooks_record" domainObjectName="AppWebhooksRecord">
 			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="commit_date" javaType="java.sql.Timestamp" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 
