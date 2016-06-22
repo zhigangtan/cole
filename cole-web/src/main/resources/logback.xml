@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-    <!-- Override CONSOLE_LOG_PATTERN from defaults.xml -->
-    <property name="CONSOLE_LOG_PATTERN"
-              value="%d{HH:mm:ss} [%15.15t{14}] %cyan(%-40.40logger{39}) [%highlight(%-5level)] %m%n%wex"/>
-    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <appender name="EXTERNAL"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <file>/data/log/produce.cole/app.log</file>
 
-
-    <property name="LOG_FILE" value="/data/log/produce.cole/app.log}"/>
-    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
-
-    <logger name="org.springframework.boot" level="INFO"/>
-
-    <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/data/log/produce.cole/app.%d{yyyy-MM-dd}.log.gz
+            </fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoder 默认配置为PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    <logger name="org.springframework.boot" level="INFO"></logger>
+    <logger name="org.eclipse" level="INFO"></logger>
+    <root level="DEBUG">
+        <appender-ref ref="EXTERNAL" />
+        <appender-ref ref="STDOUT" />
     </root>
 </configuration>
