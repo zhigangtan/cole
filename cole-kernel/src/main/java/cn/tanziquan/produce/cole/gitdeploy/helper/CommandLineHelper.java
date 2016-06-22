@@ -76,7 +76,6 @@ public class CommandLineHelper {
         return false;
     }
 
-
     public boolean executeScript(String workingDirectory, String script) {
         ByteArrayOutputStream outputStream = null;
         ByteArrayOutputStream errorStream = null;
