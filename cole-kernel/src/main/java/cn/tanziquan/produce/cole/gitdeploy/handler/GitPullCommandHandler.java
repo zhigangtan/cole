@@ -26,7 +26,6 @@ public class GitPullCommandHandler extends AbstractHandler {
         try {
             GitHubRequestBodyDto bodyDto = conext.getBodyDto();
             GitHubepositoryDto repository = bodyDto.getRepository();
-
             String branch = StringUtils.removeStartIgnoreCase(bodyDto.getRef(), "refs/heads/");
             String buildPath = conext.getBuildPath();
             File workFile = new File(buildPath + File.separator + repository.getName() + File.separator + bodyDto.getAfter());
