@@ -29,7 +29,6 @@ public class AppPackageHandler extends AbstractHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(AppPackageHandler.class);
 
-
     @Override
     public ResponseDto response(RequestConext conext) {
         String codePath = conext.getCodePath();
