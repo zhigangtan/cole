@@ -40,6 +40,8 @@
 
         <junit.version>4.12</junit.version>
 
+        <snakeyaml.version>1.17</snakeyaml.version>
+
     </properties>
 
     <dependencyManagement>
@@ -139,6 +141,11 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

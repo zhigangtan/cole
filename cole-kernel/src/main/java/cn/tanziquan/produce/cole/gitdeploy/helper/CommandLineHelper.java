@@ -29,7 +29,6 @@ public class CommandLineHelper {
         ByteArrayOutputStream errorStream = null;
         try {
             File workingDirectoryFile = new File(workingDirectory);
-
             CommandLine cmdLine = new CommandLine("git  ");
             cmdLine.addArgument("clone");
             cmdLine.addArgument("-b");
@@ -40,6 +39,50 @@ public class CommandLineHelper {
             map.put("branch", branch);
             map.put("repository", repository);
             cmdLine.setSubstitutionMap(map);
+            outputStream = new ByteArrayOutputStream();
+            errorStream = new ByteArrayOutputStream();
+            PumpStreamHandler streamHandler = new PumpStreamHandler(
+                    outputStream, errorStream);
+            DefaultExecutor executor = new DefaultExecutor();
+            ExecuteWatchdog watchdog = new ExecuteWatchdog(60000);
+            executor.setStreamHandler(streamHandler);
+            executor.setWatchdog(watchdog);
+            executor.setWorkingDirectory(workingDirectoryFile);
+            int exitValue = executor.execute(cmdLine);
+            logger.debug("info out :{}", outputStream.toString("GBK"));
+            logger.debug("error out :{}", errorStream.toString("GBK"));
+            if (exitValue == 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            logger.error("executeGitClone error", e);
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    //
+                }
+            }
+            if (errorStream != null) {
+                try {
+                    errorStream.close();
+                } catch (IOException e) {
+                    //
+                }
+            }
+        }
+        return false;
+    }
+
+
+    public boolean executeScript(String workingDirectory, String script) {
+        ByteArrayOutputStream outputStream = null;
+        ByteArrayOutputStream errorStream = null;
+        try {
+            File workingDirectoryFile = new File(workingDirectory);
+
+            CommandLine cmdLine = new CommandLine(script);
             outputStream = new ByteArrayOutputStream();
             errorStream = new ByteArrayOutputStream();
             PumpStreamHandler streamHandler = new PumpStreamHandler(

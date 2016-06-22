@@ -11,12 +11,22 @@ import cn.tanziquan.produce.cole.gitdeploy.dto.GitHubRequestBodyDto;
 public class RequestConext {
 
 
+    private String appNo;
+
     private GitHubRequestBodyDto bodyDto;
 
 
     private String buildPath;
 
+    private String codePath;
 
+    public String getAppNo() {
+        return appNo;
+    }
+
+    public void setAppNo(String appNo) {
+        this.appNo = appNo;
+    }
 
     public GitHubRequestBodyDto getBodyDto() {
         return bodyDto;
@@ -32,5 +42,13 @@ public class RequestConext {
 
     public void setBuildPath(String buildPath) {
         this.buildPath = buildPath;
+    }
+
+    public String getCodePath() {
+        return codePath;
+    }
+
+    public void setCodePath(String codePath) {
+        this.codePath = codePath;
     }
 }

@@ -60,6 +60,7 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             record.setCreatedAt(DateUtil.getCurrentTimestamp());
             GitHubRequestBodyDto bodyDto = objectMapper.readValue(json, GitHubRequestBodyDto.class);
             RequestConext requestConext = new RequestConext();
+            requestConext.setAppNo(appNo);
             requestConext.setBodyDto(bodyDto);
             requestConext.setBuildPath(buildProperties.getPath());
             GitPullCommandHandler gitPullhandler = new GitPullCommandHandler();
