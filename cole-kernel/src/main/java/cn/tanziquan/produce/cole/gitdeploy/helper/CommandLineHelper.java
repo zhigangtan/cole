@@ -1,9 +1,6 @@
 package cn.tanziquan.produce.cole.gitdeploy.helper;
 
-import org.apache.commons.exec.CommandLine;
-import org.apache.commons.exec.DefaultExecutor;
-import org.apache.commons.exec.ExecuteWatchdog;
-import org.apache.commons.exec.PumpStreamHandler;
+import org.apache.commons.exec.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +26,7 @@ public class CommandLineHelper {
         ByteArrayOutputStream errorStream = null;
         try {
             File workingDirectoryFile = new File(workingDirectory);
-            if(!workingDirectoryFile.exists()){
+            if (!workingDirectoryFile.exists()) {
                 workingDirectoryFile.mkdirs();
             }
             CommandLine cmdLine = new CommandLine("git");
@@ -46,15 +43,16 @@ public class CommandLineHelper {
             errorStream = new ByteArrayOutputStream();
             PumpStreamHandler streamHandler = new PumpStreamHandler(
                     outputStream, errorStream);
+            DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
+
             DefaultExecutor executor = new DefaultExecutor();
-            ExecuteWatchdog watchdog = new ExecuteWatchdog(60000);
             executor.setStreamHandler(streamHandler);
-            executor.setWatchdog(watchdog);
             executor.setWorkingDirectory(workingDirectoryFile);
-            int exitValue = executor.execute(cmdLine);
+            executor.execute(cmdLine, resultHandler);
+            resultHandler.waitFor();
             logger.debug("info out :{}", outputStream.toString("GBK"));
             logger.debug("error out :{}", errorStream.toString("GBK"));
-            if (exitValue == 0) {
+            if (resultHandler.getExitValue() == 0) {
                 return true;
             }
         } catch (Exception e) {
@@ -85,15 +83,13 @@ public class CommandLineHelper {
         try {
             File workingDirectoryFile = new File(workingDirectory);
 
-            CommandLine cmdLine = new CommandLine(script);
+            CommandLine cmdLine = CommandLine.parse(script);
             outputStream = new ByteArrayOutputStream();
             errorStream = new ByteArrayOutputStream();
             PumpStreamHandler streamHandler = new PumpStreamHandler(
                     outputStream, errorStream);
             DefaultExecutor executor = new DefaultExecutor();
-            ExecuteWatchdog watchdog = new ExecuteWatchdog(60000);
             executor.setStreamHandler(streamHandler);
-            executor.setWatchdog(watchdog);
             executor.setWorkingDirectory(workingDirectoryFile);
             int exitValue = executor.execute(cmdLine);
             logger.debug("info out :{}", outputStream.toString("GBK"));

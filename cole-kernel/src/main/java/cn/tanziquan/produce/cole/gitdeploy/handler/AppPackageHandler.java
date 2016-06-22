@@ -20,7 +20,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * AppPackageHandler 
+ * AppPackageHandler
  *
  * @author zhigang.tan
  * @version 0.0.1
@@ -44,6 +44,7 @@ public class AppPackageHandler extends AbstractHandler {
                 logger.info("scripts:{}", scripts);
                 if (!CollectionUtils.isEmpty(scripts)) {
                     CommandLineHelper commandLineHelper = new CommandLineHelper();
+                    commandLineHelper.executeScript(codePath, "ls");
                     for (String script : scripts) {
                         commandLineHelper.executeScript(codePath, script);
                     }
