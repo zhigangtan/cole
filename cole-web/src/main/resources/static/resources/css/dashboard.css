@@ -5,6 +5,9 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
     padding-top: 50px;
+    font-family: arial, sans-serif;
+    font-weight: normal;
+    font-size: 12px;
 }
 
 
@@ -32,20 +35,19 @@ body {
 /* Hide for mobile, show later */
 .sidebar {
     display: none;
+    background: #3f4348 url('http://www.frecosse.com/workshop/accordion_menu/bg.png');
 }
 @media (min-width: 768px) {
     .sidebar {
         position: fixed;
-        top: 51px;
+        top: 50px;
         bottom: 0;
         left: 0;
         z-index: 1000;
         display: block;
-        padding: 20px;
+        padding: 20px 0px;
         overflow-x: hidden;
         overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-        background-color: #f5f5f5;
-        border-right: 1px solid #eee;
     }
 }
 
@@ -193,4 +195,68 @@ body {
 .submenu a:hover {
     background: #b63b4d;
     color: #FFF;
+}
+
+
+.sidebar .panel-title a{
+    display: block;
+    padding:12px;
+    border-radius: 0px;
+    background: #44c6eb;     
+    border-top: 1px solid #878e98;
+    border-bottom: 1px solid #2799db;
+    color: #fff;
+    text-shadow: 0 1px 1px #000;
+    letter-spacing: 0.09em; 
+    background: #575e63;
+    background: -webkit-linear-gradient(top, #44c6eb, #2799db);
+    background: -moz-linear-gradient(top, #44c6eb, #2799db);
+    background: -ms-linear-gradient(top, #44c6eb, #2799db);
+    background: -o-linear-gradient(top, #44c6eb, #2799db);
+}
+.sidebar .panel-title a.collapsed{
+    border-bottom-color: #33373d;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#575e63), to(#3f4347));
+    background: -webkit-linear-gradient(top, #575e63, #3f4347);
+    background: -moz-linear-gradient(top, #575e63, #3f4347);
+    background: -ms-linear-gradient(top, #575e63, #3f4347);
+    background: -o-linear-gradient(top, #575e63, #3f4347); 
+}
+.sidebar .panel-heading a:hover{
+    background:#3e505e;
+}
+.sidebar .panel-title a:hover,
+.sidebar .panel-title a:focus{
+    text-decoration: none;
+}
+.list-group {
+    background-color: #fff;
+    
+}
+.list-group .list-group-item,
+.list-group .list-group-item:hover{
+    border-radius: 0px;
+    background:transparent;
+    border-color: #efefef;
+    border-right-style:none;
+    border-bottom-color: #ccc;
+}
+.list-group .list-group-item p{
+    margin:10px 0px 0px;
+}
+
+.list-group li.active,
+.list-group li.active:hover{
+    color: #44c6eb;
+  /* box-shadow:1px 1px 10px #999 inset;*/
+}
+
+.list-group-item .item-title,
+.list-group-item .item-title:hover{
+    text-decoration: none;
+}
+.item-status{
+    font-size: 16px;
+    color: #c5c5c5;
+
 }

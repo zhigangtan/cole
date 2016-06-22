@@ -20,7 +20,7 @@
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body >
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -48,13 +48,23 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Analytics</a></li>
-                <li><a href="#">Export</a></li>
-            </ul>
+        <div class="col-sm-3 col-md-2 sidebar" id="accordion"  ng-app="navApp" ng-controller="navCtrl">
+            <div  ng-repeat="x in records">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" 
+                  href="#{{x.id}}" class="collapsed">
+                  {{x.name}}
+                </a>
+            </h4>
+            <div id="{{x.id}}" class="collapse">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="o in x.appDtoList">
+                        <a href="#" class="item-title">{{o.appName}}</a>
+                        <p class="item-status">{{o.appNo}}</p>
+                    </li>
+                </ul>
+            </div> 
+            </div>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Dashboard</h1>
@@ -71,8 +81,10 @@
     </div>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="resources/js/lib/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="resources/js/lib/angular.min.js"></script>
+<script src="resources/js/index.js"></script>
 </body>
 </html>
