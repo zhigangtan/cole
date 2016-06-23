@@ -104,7 +104,6 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             AppPackageHandler packageHandler = new AppPackageHandler();
             gitPullhandler.setNextHandler(packageHandler);
             gitPullhandler.handleRequest(requestConext);
-
         } catch (IOException e) {
             logger.error("gitDepoly error", e);
         }
