@@ -20,7 +20,7 @@ public class AppMainDto {
     private List<ProEnvironmentDto> proEnvironmentDtos;
 
 
-    private Integer curEnvironment= ProEnvironmentEnum.DEVELOP.getIndex();
+    private Integer curEnvironment = ProEnvironmentEnum.DEVELOP.getIndex();
 
     private String fullName;
 
@@ -37,7 +37,10 @@ public class AppMainDto {
     private String commitAuthor;
 
 
-    private Short compilerStatus= Constant.UNCOMPILED;
+    private Short compilerStatus = Constant.UNCOMPILED;
+
+
+    private List<AppServerDto> appServerDtos;
 
 
     public String getAppNo() {
@@ -110,5 +113,14 @@ public class AppMainDto {
 
     public void setCompilerStatus(Short compilerStatus) {
         this.compilerStatus = compilerStatus;
+    }
+
+
+    public List<AppServerDto> getAppServerDtos() {
+        return appServerDtos;
+    }
+
+    public void setAppServerDtos(List<AppServerDto> appServerDtos) {
+        this.appServerDtos = appServerDtos;
     }
 }
