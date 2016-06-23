@@ -23,6 +23,7 @@ public class GitPullCommandHandler extends AbstractHandler {
 
     @Override
     public ResponseDto response(RequestConext conext) {
+        ResponseDto responseDto = new ResponseDto();
         try {
             GitHubRequestBodyDto bodyDto = conext.getBodyDto();
             GitHubepositoryDto repository = bodyDto.getRepository();
@@ -30,11 +31,13 @@ public class GitPullCommandHandler extends AbstractHandler {
             String buildPath = conext.getBuildPath();
             File workFile = new File(buildPath + File.separator + repository.getName() + File.separator + bodyDto.getAfter());
             CommandLineHelper commandLineHelper = new CommandLineHelper();
-            commandLineHelper.executeGitClone(workFile.getPath(), branch, repository.getHtml_url());
+            boolean success = commandLineHelper.executeGitClone(workFile.getPath(), branch, repository.getHtml_url());
             conext.setCodePath(workFile.getPath());
+            responseDto.setSuccess(success);
         } catch (Exception e) {
             logger.error("git pull error", e);
+            responseDto.setSuccess(false);
         }
-        return null;
+        return responseDto;
     }
 }

@@ -15,6 +15,7 @@ import cn.tanziquan.produce.cole.data.persistence.AppWebhooksRecordMapper;
 import cn.tanziquan.produce.cole.gitdeploy.dto.github.GitHubHeadCommitDto;
 import cn.tanziquan.produce.cole.gitdeploy.dto.github.GitHubRequestBodyDto;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.RequestConext;
+import cn.tanziquan.produce.cole.gitdeploy.dto.handler.ResponseDto;
 import cn.tanziquan.produce.cole.gitdeploy.handler.AppPackageHandler;
 import cn.tanziquan.produce.cole.gitdeploy.handler.GitPullCommandHandler;
 import cn.tanziquan.produce.cole.gitdeploy.service.IGitHubDepolyService;
@@ -90,10 +91,11 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             appRelease.setStage(ProEnvironmentEnum.DEVELOP.getIndex().shortValue());
             appReleaseMapper.insertSelective(appRelease);
 
-            AppReleaseDevelop develop=new AppReleaseDevelop();
+            AppReleaseDevelop develop = new AppReleaseDevelop();
             develop.setReleaseId(appRelease.getId());
             develop.setRuntimeStatus(Constant.NO_S);
-            develop.setCompilerStatus(Constant.YES_S);
+            develop.setCompilerStatus(Constant.COMPILEDING);
+            develop.setCreatedAt(DateUtil.getCurrentTimestamp());
             appReleaseDevelopMapper.insertSelective(develop);
 
             RequestConext requestConext = new RequestConext();
@@ -103,7 +105,12 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             GitPullCommandHandler gitPullhandler = new GitPullCommandHandler();
             AppPackageHandler packageHandler = new AppPackageHandler();
             gitPullhandler.setNextHandler(packageHandler);
-            gitPullhandler.handleRequest(requestConext);
+            ResponseDto handlerResponse = gitPullhandler.handleRequest(requestConext);
+            develop.setCompilerStatus(Constant.COMPILEDFAIL);
+            if(handlerResponse.isSuccess()){
+                develop.setCompilerStatus(Constant.COMPILEDSUESS);
+            }
+            appReleaseDevelopMapper.updateByPrimaryKeySelective(develop);
         } catch (IOException e) {
             logger.error("gitDepoly error", e);
         }

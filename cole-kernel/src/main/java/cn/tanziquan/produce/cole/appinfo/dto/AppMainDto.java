@@ -1,5 +1,6 @@
 package cn.tanziquan.produce.cole.appinfo.dto;
 
+import cn.tanziquan.produce.cole.basic.constant.Constant;
 import cn.tanziquan.produce.cole.basic.constant.ProEnvironmentEnum;
 
 import java.sql.Timestamp;
@@ -34,6 +35,9 @@ public class AppMainDto {
 
 
     private String commitAuthor;
+
+
+    private Short compilerStatus= Constant.UNCOMPILED;
 
 
     public String getAppNo() {
@@ -98,5 +102,13 @@ public class AppMainDto {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public Short getCompilerStatus() {
+        return compilerStatus;
+    }
+
+    public void setCompilerStatus(Short compilerStatus) {
+        this.compilerStatus = compilerStatus;
     }
 }

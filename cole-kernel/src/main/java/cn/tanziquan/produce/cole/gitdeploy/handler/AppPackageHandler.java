@@ -4,8 +4,6 @@ import cn.tanziquan.produce.cole.gitdeploy.dto.BuildDto;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.RequestConext;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.ResponseDto;
 import cn.tanziquan.produce.cole.gitdeploy.helper.CommandLineHelper;
-import org.apache.commons.exec.util.StringUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +13,6 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -31,6 +28,7 @@ public class AppPackageHandler extends AbstractHandler {
 
     @Override
     public ResponseDto response(RequestConext conext) {
+        ResponseDto responseDto = new ResponseDto();
         String codePath = conext.getCodePath();
         try {
             String projectBuildFileName = conext.getAppNo() + "_build.yml";
@@ -44,15 +42,19 @@ public class AppPackageHandler extends AbstractHandler {
                 logger.info("scripts:{}", scripts);
                 if (!CollectionUtils.isEmpty(scripts)) {
                     CommandLineHelper commandLineHelper = new CommandLineHelper();
-                    commandLineHelper.executeScript(codePath, "ls");
                     for (String script : scripts) {
-                        commandLineHelper.executeScript(codePath, script);
+                        boolean success = commandLineHelper.executeScript(codePath, script);
+                        if (!success) {
+                            responseDto.setSuccess(success);
+                            break;
+                        }
                     }
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            logger.error("AppPackageHandler error ", e);
+            responseDto.setSuccess(false);
         }
-        return null;
+        return responseDto;
     }
 }

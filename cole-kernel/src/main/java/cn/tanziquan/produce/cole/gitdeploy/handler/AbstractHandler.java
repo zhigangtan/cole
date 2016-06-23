@@ -23,8 +23,11 @@ public abstract class AbstractHandler {
     public final ResponseDto handleRequest(RequestConext request) {
         ResponseDto response = null;
         response = this.response(request);
-        if (this.nextHandler != null) {
-            this.nextHandler.handleRequest(request);
+        if (this.nextHandler != null && response.isSuccess()) {
+            ResponseDto nextResponse = this.nextHandler.handleRequest(request);
+            if (nextResponse != null) {
+                response = nextResponse;
+            }
         } else {
             System.out.println("-----没有合适的处理器-----");
         }
