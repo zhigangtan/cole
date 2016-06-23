@@ -4,6 +4,7 @@ import cn.tanziquan.produce.cole.basic.constant.Constant;
 import cn.tanziquan.produce.cole.basic.constant.ProEnvironmentEnum;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -117,6 +118,9 @@ public class AppMainDto {
 
 
     public List<AppServerDto> getAppServerDtos() {
+        if (appServerDtos == null) {
+            appServerDtos = new ArrayList<>();
+        }
         return appServerDtos;
     }
 

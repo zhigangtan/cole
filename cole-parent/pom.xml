@@ -29,6 +29,7 @@
         <commons-codec.version>1.9</commons-codec.version>
         <commons-exec.version>1.3</commons-exec.version>
         <commons-io.version>2.5</commons-io.version>
+        <commons-net.version>3.5</commons-net.version>
         <!-- apache-common version end -->
 
         <jackson.version>2.6.6</jackson.version>
@@ -121,6 +122,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <version>${commons-net.version}</version>
             </dependency>
             <!--apache commons end-->
 
