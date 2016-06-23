@@ -95,6 +95,7 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             develop.setRuntimeStatus(Constant.NO_S);
             develop.setCompilerStatus(Constant.YES_S);
             appReleaseDevelopMapper.insertSelective(develop);
+
             RequestConext requestConext = new RequestConext();
             requestConext.setAppNo(appNo);
             requestConext.setBodyDto(bodyDto);
