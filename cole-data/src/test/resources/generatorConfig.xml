@@ -60,6 +60,7 @@
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 		</table>
+		<!--
 		<table tableName="tb_app_webhooks_record" domainObjectName="AppWebhooksRecord">
 			<columnOverride column="is_delete" javaType="Short" />
 			<columnOverride column="commit_date" javaType="java.sql.Timestamp" />
@@ -67,17 +68,19 @@
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 
 		</table>
-
+-->
 		<table tableName="tb_app_release" domainObjectName="AppRelease">
 			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="stage" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 		</table>
 		<table tableName="tb_app_release_develop" domainObjectName="AppReleaseDevelop">
 			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="compiler_status" javaType="Short" />
+			<columnOverride column="runtime_status" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
-
 		</table>
 
 	</context>

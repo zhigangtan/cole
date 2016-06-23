@@ -2,9 +2,14 @@ package cn.tanziquan.produce.cole.gitdeploy.service.impl;
 
 import cn.tanziquan.produce.cole.appinfo.service.IAppInfoService;
 import cn.tanziquan.produce.cole.basic.configure.properties.BuildProperties;
+import cn.tanziquan.produce.cole.basic.constant.ProEnvironmentEnum;
 import cn.tanziquan.produce.cole.basic.util.DateUtil;
 import cn.tanziquan.produce.cole.data.domain.AppInfo;
+import cn.tanziquan.produce.cole.data.domain.AppRelease;
+import cn.tanziquan.produce.cole.data.domain.AppReleaseDevelop;
 import cn.tanziquan.produce.cole.data.domain.AppWebhooksRecord;
+import cn.tanziquan.produce.cole.data.persistence.AppReleaseDevelopMapper;
+import cn.tanziquan.produce.cole.data.persistence.AppReleaseMapper;
 import cn.tanziquan.produce.cole.data.persistence.AppWebhooksRecordMapper;
 import cn.tanziquan.produce.cole.gitdeploy.dto.github.GitHubHeadCommitDto;
 import cn.tanziquan.produce.cole.gitdeploy.dto.github.GitHubRequestBodyDto;
@@ -43,6 +48,12 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
     private AppWebhooksRecordMapper appWebhooksRecordMapper;
 
     @Autowired
+    private AppReleaseMapper appReleaseMapper;
+
+    @Autowired
+    private AppReleaseDevelopMapper appReleaseDevelopMapper;
+
+    @Autowired
     private BuildProperties buildProperties;
 
 
@@ -70,6 +81,17 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             record.setFullName(bodyDto.getRepository().getFull_name());
             record.setBranch(branch);
 
+            appWebhooksRecordMapper.insertSelective(record);
+            AppRelease appRelease = new AppRelease();
+            appRelease.setAppId(appInfo.getId());
+            appRelease.setRecordId(record.getId());
+            appRelease.setBranch(branch);
+            appRelease.setStage(ProEnvironmentEnum.DEVELOP.getIndex().shortValue());
+            appReleaseMapper.insertSelective(appRelease);
+
+            AppReleaseDevelop develop=new AppReleaseDevelop();
+            develop.setReleaseId(appRelease.getId());
+            appReleaseDevelopMapper.insertSelective(develop);
             RequestConext requestConext = new RequestConext();
             requestConext.setAppNo(appNo);
             requestConext.setBodyDto(bodyDto);
@@ -78,7 +100,7 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             AppPackageHandler packageHandler = new AppPackageHandler();
             gitPullhandler.setNextHandler(packageHandler);
             gitPullhandler.handleRequest(requestConext);
-            appWebhooksRecordMapper.insertSelective(record);
+
         } catch (IOException e) {
             logger.error("gitDepoly error", e);
         }

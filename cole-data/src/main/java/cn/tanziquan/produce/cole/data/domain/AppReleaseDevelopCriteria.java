@@ -261,63 +261,173 @@ public class AppReleaseDevelopCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andReleaseIdEqualTo(String value) {
+        public Criteria andReleaseIdEqualTo(Integer value) {
             addCriterion("release_id =", value, "releaseId");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseIdNotEqualTo(String value) {
+        public Criteria andReleaseIdNotEqualTo(Integer value) {
             addCriterion("release_id <>", value, "releaseId");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseIdGreaterThan(String value) {
+        public Criteria andReleaseIdGreaterThan(Integer value) {
             addCriterion("release_id >", value, "releaseId");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseIdGreaterThanOrEqualTo(String value) {
+        public Criteria andReleaseIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("release_id >=", value, "releaseId");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseIdLessThan(String value) {
+        public Criteria andReleaseIdLessThan(Integer value) {
             addCriterion("release_id <", value, "releaseId");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseIdLessThanOrEqualTo(String value) {
+        public Criteria andReleaseIdLessThanOrEqualTo(Integer value) {
             addCriterion("release_id <=", value, "releaseId");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseIdLike(String value) {
-            addCriterion("release_id like", value, "releaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseIdNotLike(String value) {
-            addCriterion("release_id not like", value, "releaseId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseIdIn(List<String> values) {
+        public Criteria andReleaseIdIn(List<Integer> values) {
             addCriterion("release_id in", values, "releaseId");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseIdNotIn(List<String> values) {
+        public Criteria andReleaseIdNotIn(List<Integer> values) {
             addCriterion("release_id not in", values, "releaseId");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseIdBetween(String value1, String value2) {
+        public Criteria andReleaseIdBetween(Integer value1, Integer value2) {
             addCriterion("release_id between", value1, value2, "releaseId");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseIdNotBetween(String value1, String value2) {
+        public Criteria andReleaseIdNotBetween(Integer value1, Integer value2) {
             addCriterion("release_id not between", value1, value2, "releaseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusIsNull() {
+            addCriterion("compiler_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusIsNotNull() {
+            addCriterion("compiler_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusEqualTo(Short value) {
+            addCriterion("compiler_status =", value, "compilerStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusNotEqualTo(Short value) {
+            addCriterion("compiler_status <>", value, "compilerStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusGreaterThan(Short value) {
+            addCriterion("compiler_status >", value, "compilerStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusGreaterThanOrEqualTo(Short value) {
+            addCriterion("compiler_status >=", value, "compilerStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusLessThan(Short value) {
+            addCriterion("compiler_status <", value, "compilerStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusLessThanOrEqualTo(Short value) {
+            addCriterion("compiler_status <=", value, "compilerStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusIn(List<Short> values) {
+            addCriterion("compiler_status in", values, "compilerStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusNotIn(List<Short> values) {
+            addCriterion("compiler_status not in", values, "compilerStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusBetween(Short value1, Short value2) {
+            addCriterion("compiler_status between", value1, value2, "compilerStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompilerStatusNotBetween(Short value1, Short value2) {
+            addCriterion("compiler_status not between", value1, value2, "compilerStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusIsNull() {
+            addCriterion("runtime_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusIsNotNull() {
+            addCriterion("runtime_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusEqualTo(Short value) {
+            addCriterion("runtime_status =", value, "runtimeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusNotEqualTo(Short value) {
+            addCriterion("runtime_status <>", value, "runtimeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusGreaterThan(Short value) {
+            addCriterion("runtime_status >", value, "runtimeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusGreaterThanOrEqualTo(Short value) {
+            addCriterion("runtime_status >=", value, "runtimeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusLessThan(Short value) {
+            addCriterion("runtime_status <", value, "runtimeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusLessThanOrEqualTo(Short value) {
+            addCriterion("runtime_status <=", value, "runtimeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusIn(List<Short> values) {
+            addCriterion("runtime_status in", values, "runtimeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusNotIn(List<Short> values) {
+            addCriterion("runtime_status not in", values, "runtimeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusBetween(Short value1, Short value2) {
+            addCriterion("runtime_status between", value1, value2, "runtimeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRuntimeStatusNotBetween(Short value1, Short value2) {
+            addCriterion("runtime_status not between", value1, value2, "runtimeStatus");
             return (Criteria) this;
         }
 

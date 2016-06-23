@@ -381,52 +381,52 @@ public class AppReleaseCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andStageEqualTo(Byte value) {
+        public Criteria andStageEqualTo(Short value) {
             addCriterion("stage =", value, "stage");
             return (Criteria) this;
         }
 
-        public Criteria andStageNotEqualTo(Byte value) {
+        public Criteria andStageNotEqualTo(Short value) {
             addCriterion("stage <>", value, "stage");
             return (Criteria) this;
         }
 
-        public Criteria andStageGreaterThan(Byte value) {
+        public Criteria andStageGreaterThan(Short value) {
             addCriterion("stage >", value, "stage");
             return (Criteria) this;
         }
 
-        public Criteria andStageGreaterThanOrEqualTo(Byte value) {
+        public Criteria andStageGreaterThanOrEqualTo(Short value) {
             addCriterion("stage >=", value, "stage");
             return (Criteria) this;
         }
 
-        public Criteria andStageLessThan(Byte value) {
+        public Criteria andStageLessThan(Short value) {
             addCriterion("stage <", value, "stage");
             return (Criteria) this;
         }
 
-        public Criteria andStageLessThanOrEqualTo(Byte value) {
+        public Criteria andStageLessThanOrEqualTo(Short value) {
             addCriterion("stage <=", value, "stage");
             return (Criteria) this;
         }
 
-        public Criteria andStageIn(List<Byte> values) {
+        public Criteria andStageIn(List<Short> values) {
             addCriterion("stage in", values, "stage");
             return (Criteria) this;
         }
 
-        public Criteria andStageNotIn(List<Byte> values) {
+        public Criteria andStageNotIn(List<Short> values) {
             addCriterion("stage not in", values, "stage");
             return (Criteria) this;
         }
 
-        public Criteria andStageBetween(Byte value1, Byte value2) {
+        public Criteria andStageBetween(Short value1, Short value2) {
             addCriterion("stage between", value1, value2, "stage");
             return (Criteria) this;
         }
 
-        public Criteria andStageNotBetween(Byte value1, Byte value2) {
+        public Criteria andStageNotBetween(Short value1, Short value2) {
             addCriterion("stage not between", value1, value2, "stage");
             return (Criteria) this;
         }
