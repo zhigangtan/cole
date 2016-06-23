@@ -5,6 +5,7 @@ import cn.tanziquan.produce.cole.gitdeploy.dto.handler.RequestConext;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.ResponseDto;
 import cn.tanziquan.produce.cole.gitdeploy.helper.CommandLineHelper;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -34,20 +35,24 @@ public class AppPackageHandler extends AbstractHandler {
             String projectBuildFileName = conext.getAppNo() + "_build.yml";
             File projectBuildFile = new File(FilenameUtils.concat(codePath, projectBuildFileName));
             if (projectBuildFile.exists()) {
+                CommandLineHelper commandLineHelper = new CommandLineHelper();
                 Constructor constructor = new Constructor(BuildDto.class);
                 InputStream input = new FileInputStream(projectBuildFile);
                 Yaml yaml = new Yaml(constructor);
                 BuildDto data = (BuildDto) yaml.load(input);
                 List<String> scripts = data.getScript();
                 logger.info("scripts:{}", scripts);
+
                 if (!CollectionUtils.isEmpty(scripts)) {
-                    CommandLineHelper commandLineHelper = new CommandLineHelper();
-                    for (String script : scripts) {
-                        boolean success = commandLineHelper.executeScript(codePath, script);
-                        if (!success) {
-                            responseDto.setSuccess(success);
-                            break;
-                        }
+                    responseDto.setSuccess(commandLineHelper.executeScript(codePath, scripts));
+                }
+                if (responseDto.isSuccess()) {
+                    if(StringUtils.isNotBlank(data.getOutfile())){
+                        commandLineHelper.executeScript(codePath,"mkdir "+data.getOutfile());
+                    }
+                    List<String> afterSuccesScripts = data.getAfter_success();
+                    if (!CollectionUtils.isEmpty(afterSuccesScripts)) {
+                        responseDto.setSuccess(commandLineHelper.executeScript(codePath, afterSuccesScripts));
                     }
                 }
             }

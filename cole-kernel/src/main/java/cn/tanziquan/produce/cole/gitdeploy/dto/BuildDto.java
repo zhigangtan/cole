@@ -19,6 +19,8 @@ public class BuildDto {
 
     private List<String> after_success;
 
+    private String outfile;
+
 
     public String getLanguage() {
         return language;
@@ -50,5 +52,13 @@ public class BuildDto {
 
     public void setAfter_success(List<String> after_success) {
         this.after_success = after_success;
+    }
+
+    public String getOutfile() {
+        return outfile;
+    }
+
+    public void setOutfile(String outfile) {
+        this.outfile = outfile;
     }
 }

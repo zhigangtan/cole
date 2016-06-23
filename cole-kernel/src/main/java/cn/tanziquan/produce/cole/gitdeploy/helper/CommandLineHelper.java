@@ -3,11 +3,13 @@ package cn.tanziquan.produce.cole.gitdeploy.helper;
 import org.apache.commons.exec.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * CommandLineHelper
@@ -115,5 +117,18 @@ public class CommandLineHelper {
             }
         }
         return false;
+    }
+
+    public boolean executeScript(String workingDirectory, List<String> scripts) {
+        boolean success = true;
+        if (!CollectionUtils.isEmpty(scripts)) {
+            for (String script : scripts) {
+                success = executeScript(workingDirectory, script);
+                if (!success) {
+                    break;
+                }
+            }
+        }
+        return success;
     }
 }
