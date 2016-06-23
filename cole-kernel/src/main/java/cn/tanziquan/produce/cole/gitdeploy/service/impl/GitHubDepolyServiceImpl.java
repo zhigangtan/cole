@@ -2,6 +2,7 @@ package cn.tanziquan.produce.cole.gitdeploy.service.impl;
 
 import cn.tanziquan.produce.cole.appinfo.service.IAppInfoService;
 import cn.tanziquan.produce.cole.basic.configure.properties.BuildProperties;
+import cn.tanziquan.produce.cole.basic.constant.Constant;
 import cn.tanziquan.produce.cole.basic.constant.ProEnvironmentEnum;
 import cn.tanziquan.produce.cole.basic.util.DateUtil;
 import cn.tanziquan.produce.cole.data.domain.AppInfo;
@@ -91,6 +92,8 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
 
             AppReleaseDevelop develop=new AppReleaseDevelop();
             develop.setReleaseId(appRelease.getId());
+            develop.setRuntimeStatus(Constant.NO_S);
+            develop.setCompilerStatus(Constant.YES_S);
             appReleaseDevelopMapper.insertSelective(develop);
             RequestConext requestConext = new RequestConext();
             requestConext.setAppNo(appNo);
