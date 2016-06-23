@@ -15,6 +15,7 @@ public enum ProEnvironmentEnum {
     ProEnvironmentEnum(Integer index, String content, Integer order) {
         this.index = index;
         this.content = content;
+        this.order=order;
     }
 
     private Integer index;

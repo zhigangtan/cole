@@ -1,5 +1,7 @@
 package cn.tanziquan.produce.cole.appinfo.dto;
 
+import cn.tanziquan.produce.cole.basic.constant.ProEnvironmentEnum;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -15,6 +17,9 @@ public class AppMainDto {
 
 
     private List<ProEnvironmentDto> proEnvironmentDtos;
+
+
+    private Integer curEnvironment= ProEnvironmentEnum.DEVELOP.getIndex();
 
     private String fullName;
 
@@ -45,6 +50,14 @@ public class AppMainDto {
 
     public void setProEnvironmentDtos(List<ProEnvironmentDto> proEnvironmentDtos) {
         this.proEnvironmentDtos = proEnvironmentDtos;
+    }
+
+    public Integer getCurEnvironment() {
+        return curEnvironment;
+    }
+
+    public void setCurEnvironment(Integer curEnvironment) {
+        this.curEnvironment = curEnvironment;
     }
 
     public String getBranch() {
