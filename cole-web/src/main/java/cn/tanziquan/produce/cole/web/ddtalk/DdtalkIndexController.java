@@ -41,6 +41,7 @@ public class DdtalkIndexController {
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             SsoService ssoService = serviceFactory.getOpenService(SsoService.class);
             String token=ssoService.getSSOToken("ding24c4123413c9a29a","snZXpd3Xmji-jxPW7c0TBYNgLj_ta-eBVYoWQD462Zz7R2DQOmRYlAmb1BpDx1Uf");
+            logger.info("token:{},", token);
             SsoUserInfo userInfo=  ssoService.getSSOUserinfo(token,code);
           logger.info("user:{},", userInfo.getName());
         } catch (Exception e) {
