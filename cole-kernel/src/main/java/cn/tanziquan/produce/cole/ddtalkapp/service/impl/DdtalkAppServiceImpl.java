@@ -3,7 +3,9 @@ package cn.tanziquan.produce.cole.ddtalkapp.service.impl;
 import cn.tanziquan.produce.cole.basic.constant.Constant;
 import cn.tanziquan.produce.cole.data.domain.DdtalkApp;
 import cn.tanziquan.produce.cole.data.domain.DdtalkAppCriteria;
+import cn.tanziquan.produce.cole.data.domain.DdtalkCropAuth;
 import cn.tanziquan.produce.cole.data.persistence.DdtalkAppMapper;
+import cn.tanziquan.produce.cole.data.persistence.DdtalkCropAuthMapper;
 import cn.tanziquan.produce.cole.ddtalkapp.service.IDdtalkAppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,10 @@ public class DdtalkAppServiceImpl implements IDdtalkAppService {
     @Autowired
     private DdtalkAppMapper ddtalkAppMapper;
 
+    @Autowired
+    private DdtalkCropAuthMapper ddtalkCropAuthMapper;
+
+
     @Override
     public DdtalkApp getDdtalkApp(String eventType) {
         DdtalkAppCriteria criteria = new DdtalkAppCriteria();
@@ -41,6 +47,15 @@ public class DdtalkAppServiceImpl implements IDdtalkAppService {
             ddtalkAppMapper.updateByPrimaryKeySelective(ddtalkApp);
         }else{
             ddtalkAppMapper.insertSelective(ddtalkApp);
+        }
+    }
+
+    @Override
+    public void insertOrUpdateDdtalkCropAuth(DdtalkCropAuth ddtalkCropAuth) {
+        if(ddtalkCropAuth.getId()!=null){
+            ddtalkCropAuthMapper.updateByPrimaryKeySelective(ddtalkCropAuth);
+        }else{
+            ddtalkCropAuthMapper.insertSelective(ddtalkCropAuth);
         }
     }
 }

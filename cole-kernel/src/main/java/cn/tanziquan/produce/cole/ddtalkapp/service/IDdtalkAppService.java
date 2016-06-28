@@ -1,6 +1,7 @@
 package cn.tanziquan.produce.cole.ddtalkapp.service;
 
 import cn.tanziquan.produce.cole.data.domain.DdtalkApp;
+import cn.tanziquan.produce.cole.data.domain.DdtalkCropAuth;
 
 /**
  * IDdtalkAppService
@@ -15,4 +16,7 @@ public interface IDdtalkAppService {
 
 
     public void insertOrUpdate(DdtalkApp ddtalkApp);
+
+
+    public void insertOrUpdateDdtalkCropAuth(DdtalkCropAuth ddtalkCropAuth);
 }

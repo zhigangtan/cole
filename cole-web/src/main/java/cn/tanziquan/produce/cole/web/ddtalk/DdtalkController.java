@@ -2,6 +2,7 @@ package cn.tanziquan.produce.cole.web.ddtalk;
 
 import cn.tanziquan.produce.cole.configure.properties.DdtalkEnvProperties;
 import cn.tanziquan.produce.cole.data.domain.DdtalkApp;
+import cn.tanziquan.produce.cole.data.domain.DdtalkCropAuth;
 import cn.tanziquan.produce.cole.ddtalkapp.service.IDdtalkAppService;
 import cn.tanziquan.produce.cole.util.DingTalkEncryptException;
 import cn.tanziquan.produce.cole.util.DingTalkEncryptor;
@@ -47,11 +48,11 @@ public class DdtalkController {
         DingTalkEncryptException dingTalkEncryptException = null;
         DingTalkEncryptor dingTalkEncryptor = null;
         String plainText = "";
-        Encrypt encryptvo=null;
+        Encrypt encryptvo = null;
         try {
             logger.info("encrypt:[{}]", encrypt);
-            logger.info("signature:[{}],timestamp;[{}],nonce:[{}]", signature,timestamp,nonce);
-             encryptvo = objectMapper.readValue(encrypt, Encrypt.class);
+            logger.info("signature:[{}],timestamp;[{}],nonce:[{}]", signature, timestamp, nonce);
+            encryptvo = objectMapper.readValue(encrypt, Encrypt.class);
             dingTalkEncryptor = new DingTalkEncryptor(ddtalkEnvProperties.getToken(), ddtalkEnvProperties.getEncodingAesKey(), ddtalkEnvProperties.getSuiteKey());
                 /*
                  * 获取从encrypt解密出来的明文
@@ -59,7 +60,7 @@ public class DdtalkController {
             plainText = dingTalkEncryptor.getDecryptMsg(signature, timestamp, nonce, encryptvo.getEncrypt());
             logger.info("plainText:{}", plainText);
         } catch (DingTalkEncryptException dte) {
-            dingTalkEncryptException=dte;
+            dingTalkEncryptException = dte;
             logger.error("DingTalkEncryptException", dte);
         } catch (Exception e) {
             logger.error("error", e);
@@ -80,7 +81,7 @@ public class DdtalkController {
             }
         }
         logger.info("plainText:{}", plainText);
-        if(StringUtils.isEmpty(plainText)){
+        if (StringUtils.isEmpty(plainText)) {
             return new HashMap<>();
         }
         String resultText = "success";
@@ -98,8 +99,8 @@ public class DdtalkController {
 					}
 				 */
                     //获取到suiteTicket之后需要换取suiteToken，
-                    String tmpSuiteKey=plainTextJson.getString("SuiteKey");
-                    String tmpSuiteTicket=plainTextJson.getString("SuiteTicket");
+                    String tmpSuiteKey = plainTextJson.getString("SuiteKey");
+                    String tmpSuiteTicket = plainTextJson.getString("SuiteTicket");
                     String suiteToken = ServiceHelper.getSuiteToken(tmpSuiteKey, ddtalkEnvProperties.getSuiteSecret(), tmpSuiteTicket);
                 /*
                  * ISV应当把最新推送的suiteTicket做持久化存储，
@@ -122,7 +123,7 @@ public class DdtalkController {
                     break;
                 case "tmp_auth_code":
                 /*"tmp_auth_code"事件将企业对套件发起授权的时候推送
-				 * 数据格式如下
+                 * 数据格式如下
 				{
 				  "SuiteKey": "suitexxxxxx",
 				  "EventType": " tmp_auth_code",
@@ -130,36 +131,45 @@ public class DdtalkController {
 				  "AuthCode": "adads"
 				}
 				*/
-                    String tmpAuthCode=plainTextJson.getString("AuthCode");
+                    String tmpAuthCode = plainTextJson.getString("AuthCode");
 
-                    String suiteTokenPerm = "";//suiteToken;
+                    String suiteTokenPerm = "";
+
+                    DdtalkApp tddtakApp = ddtalkAppService.getDdtalkApp("suite_ticket");
+                    if (tddtakApp != null) {
+                        suiteTokenPerm = tddtakApp.getSuiteToken();
+                    } else {
+                        break;
+                    }
+
+                    logger.info("拿到 拿到tmp_auth_code:{}", tmpAuthCode);
 				/*
 				 * 拿到tmp_auth_code（临时授权码）后，需要向钉钉服务器获取企业的corpId（企业id）和permanent_code（永久授权码）
 				 */
-                    CorpAuthSuiteCode corpAuthSuiteCode = ServiceHelper.getPermanentCode(Env.authCode, suiteTokenPerm);
+                    CorpAuthSuiteCode corpAuthSuiteCode = ServiceHelper.getPermanentCode(tmpAuthCode, suiteTokenPerm);
                     String corpId = corpAuthSuiteCode.getAuth_corp_info().getCorpid();
                     String permanent_code = corpAuthSuiteCode.getPermanent_code();
+
+                    logger.info("拿到 拿到permanent_code:{}", permanent_code);
 				/*
 				 * 将corpId（企业id）和permanent_code（永久授权码）做持久化存储
 				 * 之后在获取企业的access_token时需要使用
 				 */
                     //permanentcode
+                    logger.info("保存permanent_code:{}", permanent_code);
+                    DdtalkCropAuth ddtalkCropAuth = new DdtalkCropAuth();
+                    ddtalkCropAuth.setCorpid(corpId);
+                    ddtalkCropAuth.setPermanentCode(permanent_code);
+                    ddtalkAppService.insertOrUpdateDdtalkCropAuth(ddtalkCropAuth);
 				/*
 				 * 对企业授权的套件发起激活，
 				 */
+                    logger.info("激活permanent_code:{}", permanent_code);
                     ServiceHelper.getActivateSuite(suiteTokenPerm, ddtalkEnvProperties.getSuiteKey(), corpId, permanent_code);
 				/*
 				 * 获取对应企业的access_token，每一个企业都会有一个对应的access_token，访问对应企业的数据都将需要带上这个access_token
 				 * access_token的过期时间为两个小时
 				 */
-                    try {
-                        AuthHelper.getAccessToken(corpId);
-
-                    } catch (Exception e1) {
-                        // TODO Auto-generated catch block
-                        System.out.println(e1.toString());
-                        e1.printStackTrace();
-                    }
                     break;
                 case "change_auth":
 				/*"change_auth"事件将在企业授权变更消息发生时推送
@@ -197,7 +207,7 @@ public class DdtalkController {
 					}
 				 */
                     //此事件需要返回的"Random"字段，
-                    String tmpRandom=plainTextJson.getString("Random");
+                    String tmpRandom = plainTextJson.getString("Random");
                     resultText = tmpRandom;
                     break;
 

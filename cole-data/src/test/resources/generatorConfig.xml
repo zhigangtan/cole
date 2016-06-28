@@ -98,5 +98,10 @@
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 		</table>
+		<table tableName="tb_ddtalk_corp_auth" domainObjectName="DdtalkCropAuth">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+		</table>
 	</context>
 </generatorConfiguration>
