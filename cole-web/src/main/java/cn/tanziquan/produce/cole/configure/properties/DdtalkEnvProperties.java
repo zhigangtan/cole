@@ -22,6 +22,11 @@ public class DdtalkEnvProperties {
     private String createSuiteKey;
 
 
+    private String suiteKey;
+
+    private String suiteSecret;
+
+
     public String getEncodingAesKey() {
         return encodingAesKey;
     }
@@ -44,5 +49,21 @@ public class DdtalkEnvProperties {
 
     public void setCreateSuiteKey(String createSuiteKey) {
         this.createSuiteKey = createSuiteKey;
+    }
+
+    public String getSuiteKey() {
+        return suiteKey;
+    }
+
+    public void setSuiteKey(String suiteKey) {
+        this.suiteKey = suiteKey;
+    }
+
+    public String getSuiteSecret() {
+        return suiteSecret;
+    }
+
+    public void setSuiteSecret(String suiteSecret) {
+        this.suiteSecret = suiteSecret;
     }
 }

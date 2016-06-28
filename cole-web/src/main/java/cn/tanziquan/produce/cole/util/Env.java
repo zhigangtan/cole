@@ -11,13 +11,9 @@ public class Env {
 	public static final String SECRET = "";
 	public static final String SSO_Secret = "";
 
-	
-	public static String suiteTicket; 
+
 	public static String authCode; 
-	public static String suiteToken; 
 
-
-	public static final String SUITE_SECRET = "";
 
 	
 }

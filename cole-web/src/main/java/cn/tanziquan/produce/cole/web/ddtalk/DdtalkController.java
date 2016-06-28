@@ -47,18 +47,12 @@ public class DdtalkController {
         DingTalkEncryptException dingTalkEncryptException = null;
         DingTalkEncryptor dingTalkEncryptor = null;
         String plainText = "";
-        String suiteKey = "";
         Encrypt encryptvo=null;
         try {
-
-            DdtalkApp ddtakApp = ddtalkAppService.getDdtalkApp("suite_ticket");
-            if (ddtakApp != null) {
-                suiteKey = ddtakApp.getSuiteKey();
-            }
             logger.info("encrypt:[{}]", encrypt);
             logger.info("signature:[{}],timestamp;[{}],nonce:[{}]", signature,timestamp,nonce);
              encryptvo = objectMapper.readValue(encrypt, Encrypt.class);
-            dingTalkEncryptor = new DingTalkEncryptor(ddtalkEnvProperties.getToken(), ddtalkEnvProperties.getEncodingAesKey(), suiteKey);
+            dingTalkEncryptor = new DingTalkEncryptor(ddtalkEnvProperties.getToken(), ddtalkEnvProperties.getEncodingAesKey(), ddtalkEnvProperties.getSuiteKey());
                 /*
                  * 获取从encrypt解密出来的明文
 				 */
@@ -106,7 +100,7 @@ public class DdtalkController {
                     //获取到suiteTicket之后需要换取suiteToken，
                     String tmpSuiteKey=plainTextJson.getString("SuiteKey");
                     String tmpSuiteTicket=plainTextJson.getString("SuiteTicket");
-                    String suiteToken = ServiceHelper.getSuiteToken(tmpSuiteKey, Env.SUITE_SECRET, tmpSuiteTicket);
+                    String suiteToken = ServiceHelper.getSuiteToken(tmpSuiteKey, ddtalkEnvProperties.getSuiteSecret(), tmpSuiteTicket);
                 /*
                  * ISV应当把最新推送的suiteTicket做持久化存储，
 				 * 以防重启服务器之后丢失了当前的suiteTicket
@@ -153,7 +147,7 @@ public class DdtalkController {
 				/*
 				 * 对企业授权的套件发起激活，
 				 */
-                    ServiceHelper.getActivateSuite(suiteTokenPerm, suiteKey, corpId, permanent_code);
+                    ServiceHelper.getActivateSuite(suiteTokenPerm, ddtalkEnvProperties.getSuiteKey(), corpId, permanent_code);
 				/*
 				 * 获取对应企业的access_token，每一个企业都会有一个对应的access_token，访问对应企业的数据都将需要带上这个access_token
 				 * access_token的过期时间为两个小时
