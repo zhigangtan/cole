@@ -40,7 +40,7 @@ public class DdtalkIndexController {
         try {
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             SsoService ssoService = serviceFactory.getOpenService(SsoService.class);
-            SsoUserInfo userInfo=  ssoService.getSSOUserinfo("r9HWfoFsQT3Y9LoGFgpPqnFHXqjuGX73VTcwAeR7DbQGnKEAJid125nFgf2c-VwB",code);
+            SsoUserInfo userInfo=  ssoService.getSSOUserinfo("Yw0HGFdoq4w7afENwZlKsGqG8GZT-8tLBZ1N6wx991cqwruqlD7NFCMAxynTklA6",code);
           logger.info("user:{},corpid", userInfo.getName());
         } catch (Exception e) {
             logger.error("get sso error", e);
