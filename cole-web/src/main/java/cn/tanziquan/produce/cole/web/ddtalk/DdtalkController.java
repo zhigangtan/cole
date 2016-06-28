@@ -46,14 +46,15 @@ public class DdtalkController {
         DingTalkEncryptException dingTalkEncryptException = null;
         DingTalkEncryptor dingTalkEncryptor = null;
         String plainText = "";
-        String suiteKey="";
+        String suiteKey = "";
         try {
 
             DdtalkApp ddtakApp = ddtalkAppService.getDdtalkApp("suite_ticket");
-            if(ddtakApp!=null){
-                suiteKey=ddtakApp.getSuiteKey();
+            if (ddtakApp != null) {
+                suiteKey = ddtakApp.getSuiteKey();
             }
-
+            logger.info("encrypt:[{}]", encrypt);
+            logger.info("signature:[{}],timestamp;[{}],nonce:[{}]", signature,timestamp,nonce);
             Encrypt encryptvo = objectMapper.readValue(encrypt, Encrypt.class);
             dingTalkEncryptor = new DingTalkEncryptor(ddtalkEnvProperties.getToken(), ddtalkEnvProperties.getEncodingAesKey(), suiteKey);
                 /*
@@ -117,7 +118,7 @@ public class DdtalkController {
                     ddtalkAppService.insertOrUpdate(ddtakApp);
                     break;
                 case "tmp_auth_code":
-				/*"tmp_auth_code"事件将企业对套件发起授权的时候推送
+                /*"tmp_auth_code"事件将企业对套件发起授权的时候推送
 				 * 数据格式如下
 				{
 				  "SuiteKey": "suitexxxxxx",

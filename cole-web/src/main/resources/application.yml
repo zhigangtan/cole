@@ -8,8 +8,8 @@ environments:
     build:
          path: /data/produce.cole/build
     ddtalk:
-        token: 123456
-        encodingAesKey: 4g5j64qlyl3zvetqxz5jiocdr586fn2zvjpa8zls3ij
+        token: zhigangtan00001
+        encodingAesKey: dwlq23ebzgb90woi8lzuldaim85arxcqvtat32ovwct
         createSuiteKey: suite4xxxxxxxxxxxxxxx
 
 
