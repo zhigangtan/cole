@@ -10,7 +10,9 @@ import cn.tanziquan.produce.cole.web.ddtalk.helper.AuthHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.helper.ServiceHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.vo.Encrypt;
 import cn.tanziquan.produce.cole.web.ddtalk.vo.PlainTextVo;
+import com.alibaba.fastjson.JSONObject;
 import com.dingtalk.open.client.api.model.isv.CorpAuthSuiteCode;
+import com.dingtalk.open.client.utils.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +49,7 @@ public class DdtalkController {
         DingTalkEncryptor dingTalkEncryptor = null;
         String plainText = "";
         String suiteKey = "";
+        Encrypt encryptvo=null;
         try {
 
             DdtalkApp ddtakApp = ddtalkAppService.getDdtalkApp("suite_ticket");
@@ -55,7 +58,7 @@ public class DdtalkController {
             }
             logger.info("encrypt:[{}]", encrypt);
             logger.info("signature:[{}],timestamp;[{}],nonce:[{}]", signature,timestamp,nonce);
-            Encrypt encryptvo = objectMapper.readValue(encrypt, Encrypt.class);
+             encryptvo = objectMapper.readValue(encrypt, Encrypt.class);
             dingTalkEncryptor = new DingTalkEncryptor(ddtalkEnvProperties.getToken(), ddtalkEnvProperties.getEncodingAesKey(), suiteKey);
                 /*
                  * 获取从encrypt解密出来的明文
@@ -76,7 +79,7 @@ public class DdtalkController {
 							 */
                         dingTalkEncryptor = new DingTalkEncryptor(ddtalkEnvProperties.getToken(), ddtalkEnvProperties.getEncodingAesKey(),
                                 ddtalkEnvProperties.getCreateSuiteKey());
-                        plainText = dingTalkEncryptor.getDecryptMsg(signature, timestamp, nonce, encrypt);
+                        plainText = dingTalkEncryptor.getDecryptMsg(signature, timestamp, nonce, encryptvo.getEncrypt());
                     } catch (DingTalkEncryptException e) {
                         logger.error("trwo DingTalkEncryptException", e);
                     }
@@ -84,10 +87,14 @@ public class DdtalkController {
             }
         }
         logger.info("plainText:{}", plainText);
+        if(StringUtils.isEmpty(plainText)){
+            return new HashMap<>();
+        }
         String resultText = "success";
         try {
-            PlainTextVo vo = objectMapper.readValue(plainText, PlainTextVo.class);
-            switch (vo.getEventType()) {
+            JSONObject plainTextJson = JSONObject.parseObject(plainText);
+            String eventType = plainTextJson.getString("EventType");
+            switch (eventType) {
                 case "suite_ticket":
                 /*"suite_ticket"事件每二十分钟推送一次,数据格式如下
                  * {
@@ -98,23 +105,25 @@ public class DdtalkController {
 					}
 				 */
                     //获取到suiteTicket之后需要换取suiteToken，
-                    String suiteToken = ServiceHelper.getSuiteToken(vo.getSuiteKey(), Env.SUITE_SECRET, vo.getSuiteTicket());
+                    String tmpSuiteKey=plainTextJson.getString("SuiteKey");
+                    String tmpSuiteTicket=plainTextJson.getString("SuiteTicket");
+                    String suiteToken = ServiceHelper.getSuiteToken(tmpSuiteKey, Env.SUITE_SECRET, tmpSuiteTicket);
                 /*
                  * ISV应当把最新推送的suiteTicket做持久化存储，
 				 * 以防重启服务器之后丢失了当前的suiteTicket
 				 *
 				 */
-                    DdtalkApp ddtakApp = ddtalkAppService.getDdtalkApp(vo.getEventType());
+                    DdtalkApp ddtakApp = ddtalkAppService.getDdtalkApp(eventType);
                     if (ddtakApp == null) {
                         ddtakApp = new DdtalkApp();
-                        ddtakApp.setSuiteKey(vo.getSuiteKey());
+                        ddtakApp.setSuiteKey(tmpSuiteKey);
                         ddtakApp.setSuiteToken(suiteToken);
-                        ddtakApp.setSuiteTicket(vo.getSuiteTicket());
-                        ddtakApp.setEventType(vo.getEventType());
+                        ddtakApp.setSuiteTicket(tmpSuiteTicket);
+                        ddtakApp.setEventType(eventType);
                     } else {
-                        ddtakApp.setSuiteKey(vo.getSuiteKey());
+                        ddtakApp.setSuiteKey(tmpSuiteKey);
                         ddtakApp.setSuiteToken(suiteToken);
-                        ddtakApp.setSuiteTicket(vo.getSuiteTicket());
+                        ddtakApp.setSuiteTicket(tmpSuiteTicket);
                     }
                     ddtalkAppService.insertOrUpdate(ddtakApp);
                     break;
@@ -128,7 +137,7 @@ public class DdtalkController {
 				  "AuthCode": "adads"
 				}
 				*/
-                    Env.authCode = vo.getAuthCode();
+                    String tmpAuthCode=plainTextJson.getString("AuthCode");
 
                     String suiteTokenPerm = "";//suiteToken;
 				/*
@@ -195,7 +204,8 @@ public class DdtalkController {
 					}
 				 */
                     //此事件需要返回的"Random"字段，
-                    resultText = vo.getRandom();
+                    String tmpRandom=plainTextJson.getString("Random");
+                    resultText = tmpRandom;
                     break;
 
                 case "check_update_suite_url":
@@ -207,7 +217,7 @@ public class DdtalkController {
 
 					}
 				 */
-                    resultText = vo.getRandom();
+                    resultText = plainTextJson.getString("Random");
                     break;
                 default: // do something
                     break;
@@ -217,7 +227,7 @@ public class DdtalkController {
         }
 
         try {
-            resultMap = dingTalkEncryptor.getEncryptedMap(resultText, Long.getLong(timestamp), nonce);
+            resultMap = dingTalkEncryptor.getEncryptedMap(resultText, Long.parseLong(timestamp), nonce);
         } catch (DingTalkEncryptException e) {
             logger.error("getEncryptedMap error", e);
         }
