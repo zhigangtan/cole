@@ -28,8 +28,8 @@ public class DdtalkIndexController {
 
 
     @RequestMapping(value = "/admin")
-    private String admin(@RequestParam(value = "corpid") String corpid) {
-        logger.info("admin corpid:{}", corpid);
+    private String admin(@RequestParam(value = "code") String code) {
+        logger.info("admin code:{}", code);
 
         return "ok admin ";
     }
