@@ -9,7 +9,6 @@ import cn.tanziquan.produce.cole.util.Env;
 import cn.tanziquan.produce.cole.web.ddtalk.helper.AuthHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.helper.ServiceHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.vo.Encrypt;
-import cn.tanziquan.produce.cole.web.ddtalk.vo.PlainTextVo;
 import com.alibaba.fastjson.JSONObject;
 import com.dingtalk.open.client.api.model.isv.CorpAuthSuiteCode;
 import com.dingtalk.open.client.utils.StringUtils;
