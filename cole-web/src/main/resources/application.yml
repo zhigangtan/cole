@@ -7,6 +7,12 @@ environments:
         jdbcPwd: qdm150698491
     build:
          path: /data/produce.cole/build
+    ddtalk:
+        token: 123456
+        encodingAesKey: 4g5j64qlyl3zvetqxz5jiocdr586fn2zvjpa8zls3ij
+        createSuiteKey: suite4xxxxxxxxxxxxxxx
+
+
 spring:
     thymeleaf:
         cache: false

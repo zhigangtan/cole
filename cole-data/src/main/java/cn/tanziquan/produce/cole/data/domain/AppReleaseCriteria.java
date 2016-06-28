@@ -501,6 +501,76 @@ public class AppReleaseCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andSerialNoIsNull() {
+            addCriterion("serial_no is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoIsNotNull() {
+            addCriterion("serial_no is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoEqualTo(String value) {
+            addCriterion("serial_no =", value, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoNotEqualTo(String value) {
+            addCriterion("serial_no <>", value, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoGreaterThan(String value) {
+            addCriterion("serial_no >", value, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoGreaterThanOrEqualTo(String value) {
+            addCriterion("serial_no >=", value, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoLessThan(String value) {
+            addCriterion("serial_no <", value, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoLessThanOrEqualTo(String value) {
+            addCriterion("serial_no <=", value, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoLike(String value) {
+            addCriterion("serial_no like", value, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoNotLike(String value) {
+            addCriterion("serial_no not like", value, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoIn(List<String> values) {
+            addCriterion("serial_no in", values, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoNotIn(List<String> values) {
+            addCriterion("serial_no not in", values, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoBetween(String value1, String value2) {
+            addCriterion("serial_no between", value1, value2, "serialNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNoNotBetween(String value1, String value2) {
+            addCriterion("serial_no not between", value1, value2, "serialNo");
+            return (Criteria) this;
+        }
+
         public Criteria andIsDeleteIsNull() {
             addCriterion("is_delete is null");
             return (Criteria) this;

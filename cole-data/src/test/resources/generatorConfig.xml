@@ -60,30 +60,39 @@
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 		</table>
-		<!--
+
 		<table tableName="tb_app_webhooks_record" domainObjectName="AppWebhooksRecord">
+			<generatedKey column="id" sqlStatement="MySql"/>
 			<columnOverride column="is_delete" javaType="Short" />
 			<columnOverride column="commit_date" javaType="java.sql.Timestamp" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
-
 		</table>
 
 		<table tableName="tb_app_release" domainObjectName="AppRelease">
+			<generatedKey column="id" sqlStatement="MySql"/>
 			<columnOverride column="is_delete" javaType="Short" />
 			<columnOverride column="stage" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 		</table>
+
 		<table tableName="tb_app_release_develop" domainObjectName="AppReleaseDevelop">
+			<generatedKey column="id" sqlStatement="MySql"/>
 			<columnOverride column="is_delete" javaType="Short" />
 			<columnOverride column="compiler_status" javaType="Short" />
 			<columnOverride column="runtime_status" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
 			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
 		</table>
-		-->
+
 		<table tableName="tb_app_release_develop_server" domainObjectName="AppReleaseDevelopServer">
+			<columnOverride column="is_delete" javaType="Short" />
+			<columnOverride column="runtime_status" javaType="Short" />
+			<columnOverride column="created_at" javaType="java.sql.Timestamp" />
+			<columnOverride column="updated_at" javaType="java.sql.Timestamp" />
+		</table>
+		<table tableName="tb_ddtalk_app" domainObjectName="DdtalkApp">
 			<columnOverride column="is_delete" javaType="Short" />
 			<columnOverride column="runtime_status" javaType="Short" />
 			<columnOverride column="created_at" javaType="java.sql.Timestamp" />

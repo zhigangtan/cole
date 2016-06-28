@@ -107,3 +107,6 @@ application.pid
 
 
 .arcconfig
+cole-data/src/main/java/cn/tanziquan/produce/cole/data/domain/AppReleaseDevelopCriteria.java.1
+cole-data/src/main/java/cn/tanziquan/produce/cole/data/domain/AppReleaseDevelopServer.java.1
+cole-data/src/main/java/cn/tanziquan/produce/cole/data/persistence/AppReleaseDevelopServerMapper.java.1
