@@ -63,6 +63,7 @@ public class DdtalkController {
             plainText = dingTalkEncryptor.getDecryptMsg(signature, timestamp, nonce, encryptvo.getEncrypt());
             logger.info("plainText:{}", plainText);
         } catch (DingTalkEncryptException dte) {
+            dingTalkEncryptException=dte;
             logger.error("DingTalkEncryptException", dte);
         } catch (Exception e) {
             logger.error("error", e);
