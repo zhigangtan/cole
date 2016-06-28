@@ -90,7 +90,7 @@
         </dependency>
         <dependency>
             <groupId>com.dingtalk.open</groupId>
-            <artifactId>client-sdk.code</artifactId>
+            <artifactId>client-sdk.core</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
