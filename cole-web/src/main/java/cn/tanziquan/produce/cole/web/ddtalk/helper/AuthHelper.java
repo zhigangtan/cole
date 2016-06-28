@@ -195,7 +195,7 @@ public class AuthHelper {
 		String accessToken = FileUtils.getValue("ticket", "suiteToken").toString();
 		String url = "https://oapi.dingtalk.com/service/get_auth_info?suite_access_token=" + accessToken;
 		JSONObject args = new JSONObject();
-		args.put("suite_key", Env.SUITE_KEY);
+		//args.put("suite_key", Env.SUITE_KEY);
 		args.put("auth_corpid", corpId);
 		args.put("permanent_code", FileUtils.getValue("permanentcode", corpId));
 		// HttpHelper.httpPost(url, args);
