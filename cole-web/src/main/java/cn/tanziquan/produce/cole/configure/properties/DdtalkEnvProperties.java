@@ -27,6 +27,11 @@ public class DdtalkEnvProperties {
     private String suiteSecret;
 
 
+    private String corpId;
+
+    private String corpSecret;
+
+
     public String getEncodingAesKey() {
         return encodingAesKey;
     }
@@ -65,5 +70,21 @@ public class DdtalkEnvProperties {
 
     public void setSuiteSecret(String suiteSecret) {
         this.suiteSecret = suiteSecret;
+    }
+
+    public String getCorpSecret() {
+        return corpSecret;
+    }
+
+    public void setCorpSecret(String corpSecret) {
+        this.corpSecret = corpSecret;
+    }
+
+    public String getCorpId() {
+        return corpId;
+    }
+
+    public void setCorpId(String corpId) {
+        this.corpId = corpId;
     }
 }
