@@ -49,7 +49,6 @@ public class DdtalkIndexController {
             String token = ssoService.getSSOToken(ddtalkEnvProperties.getCorpId(), ddtalkEnvProperties.getCorpSecret());
             logger.info("token:{},", token);
             SsoUserInfo userInfo = ssoService.getSSOUserinfo(token, code);
-            logger.info("user:{},", userInfo.getName());
         } catch (Exception e) {
             logger.error("get sso error", e);
         }
