@@ -11,8 +11,17 @@ import cn.tanziquan.produce.cole.web.ddtalk.helper.AuthHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.helper.ServiceHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.vo.Encrypt;
 import com.alibaba.fastjson.JSONObject;
+import com.dingtalk.open.client.ServiceFactory;
+import com.dingtalk.open.client.api.model.corp.CorpUserDetail;
+import com.dingtalk.open.client.api.model.corp.CorpUserDetailList;
+import com.dingtalk.open.client.api.model.corp.Department;
 import com.dingtalk.open.client.api.model.isv.CorpAuthInfo;
 import com.dingtalk.open.client.api.model.isv.CorpAuthSuiteCode;
+import com.dingtalk.open.client.api.service.corp.CorpDepartmentService;
+import com.dingtalk.open.client.api.service.corp.CorpUserService;
+import com.dingtalk.open.client.api.service.isv.IsvService;
+import com.dingtalk.open.client.common.SdkInitException;
+import com.dingtalk.open.client.common.ServiceNotExistException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -21,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -180,6 +190,20 @@ public class DdtalkController {
                     corpInfo.setIndustry(corpAuthInfo.getAuth_corp_info().getIndustry());
                     ddtalkAppService.insertCorpAuthInfo(corpInfo);
 
+                    try {
+                        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+                        CorpDepartmentService corpDepartmentService = serviceFactory.getOpenService(CorpDepartmentService.class);
+                        CorpUserService corpUserService=serviceFactory.getOpenService(CorpUserService.class);
+                        List<Department> departments= corpDepartmentService.getDeptList(corpToken,"");
+                        for (Department department:departments){
+                            CorpUserDetailList corpUserDetailList= corpUserService.getCorpUserList(corpToken,department.getId(),0l,100,"");
+
+                            List<CorpUserDetail> corpUserDetails= corpUserDetailList.getUserlist();
+
+                        }
+                    } catch (Exception e) {
+                       logger.error("CorpDepartmentService");
+                    }
 
 
                     break;
