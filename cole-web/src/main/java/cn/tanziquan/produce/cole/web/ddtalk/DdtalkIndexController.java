@@ -34,7 +34,6 @@ public class DdtalkIndexController {
     @RequestMapping(value = "/index")
     private String index(@RequestParam(value = "corpid") String corpid) {
         logger.info("index corpid:{}", corpid);
-
         return "ok index";
     }
 

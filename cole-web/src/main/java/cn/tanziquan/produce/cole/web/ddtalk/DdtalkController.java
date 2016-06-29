@@ -11,6 +11,7 @@ import cn.tanziquan.produce.cole.web.ddtalk.helper.AuthHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.helper.ServiceHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.vo.Encrypt;
 import com.alibaba.fastjson.JSONObject;
+import com.dingtalk.open.client.api.model.isv.CorpAuthInfo;
 import com.dingtalk.open.client.api.model.isv.CorpAuthSuiteCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
@@ -170,6 +171,17 @@ public class DdtalkController {
 				 * 获取对应企业的access_token，每一个企业都会有一个对应的access_token，访问对应企业的数据都将需要带上这个access_token
 				 * access_token的过期时间为两个小时
 				 */
+                    String corpToken= ServiceHelper.getCorpToken(corpId,permanent_code,suiteTokenPerm);
+
+                    CorpAuthInfo corpAuthInfo= ServiceHelper.getAuthInfo(suiteTokenPerm,ddtalkEnvProperties.getSuiteKey(),corpId,permanent_code);
+                   cn.tanziquan.produce.cole.data.domain.CorpAuthInfo corpInfo=new cn.tanziquan.produce.cole.data.domain.CorpAuthInfo();
+                    corpInfo.setCorpid(corpAuthInfo.getAuth_corp_info().getCorpid());
+                    corpInfo.setCorpName(corpAuthInfo.getAuth_corp_info().getCorp_name());
+                    corpInfo.setIndustry(corpAuthInfo.getAuth_corp_info().getIndustry());
+                    ddtalkAppService.insertCorpAuthInfo(corpInfo);
+
+
+
                     break;
                 case "change_auth":
 				/*"change_auth"事件将在企业授权变更消息发生时推送

@@ -1,9 +1,11 @@
 package cn.tanziquan.produce.cole.ddtalkapp.service.impl;
 
 import cn.tanziquan.produce.cole.basic.constant.Constant;
+import cn.tanziquan.produce.cole.data.domain.CorpAuthInfo;
 import cn.tanziquan.produce.cole.data.domain.DdtalkApp;
 import cn.tanziquan.produce.cole.data.domain.DdtalkAppCriteria;
 import cn.tanziquan.produce.cole.data.domain.DdtalkCropAuth;
+import cn.tanziquan.produce.cole.data.persistence.CorpAuthInfoMapper;
 import cn.tanziquan.produce.cole.data.persistence.DdtalkAppMapper;
 import cn.tanziquan.produce.cole.data.persistence.DdtalkCropAuthMapper;
 import cn.tanziquan.produce.cole.ddtalkapp.service.IDdtalkAppService;
@@ -28,6 +30,9 @@ public class DdtalkAppServiceImpl implements IDdtalkAppService {
 
     @Autowired
     private DdtalkCropAuthMapper ddtalkCropAuthMapper;
+
+    @Autowired
+    private CorpAuthInfoMapper corpAuthInfoMapper;
 
 
     @Override
@@ -57,5 +62,10 @@ public class DdtalkAppServiceImpl implements IDdtalkAppService {
         }else{
             ddtalkCropAuthMapper.insertSelective(ddtalkCropAuth);
         }
+    }
+
+    @Override
+    public void insertCorpAuthInfo(CorpAuthInfo corpAuthInfo) {
+        corpAuthInfoMapper.insertSelective(corpAuthInfo);
     }
 }
