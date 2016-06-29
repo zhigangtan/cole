@@ -11,8 +11,8 @@ environments:
         token: zhigangtan00001
         encodingAesKey: dwlq23ebzgb90woi8lzuldaim85arxcqvtat32ovwct
         createSuiteKey: suite4xxxxxxxxxxxxxxx
-        suiteKey: suite3sf3rxgr7734e3gd
-        suiteSecret: jl3htzrY0DDxC22C7TJwweVlNjp9Anovvw-wmbH4IzbJVZ794y7HtWq_e3cTCAmF
+        suiteKey: ding24c4123413c9a29a
+        suiteSecret: snZXpd3Xmji-jxPW7c0TBYNgLj_ta-eBVYoWQD462Zz7R2DQOmRYlAmb1BpDx1Uf
 
 
 spring:
