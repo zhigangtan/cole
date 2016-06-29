@@ -1,12 +1,12 @@
 package cn.tanziquan.produce.cole.web.ddtalk;
 
+import cn.tanziquan.produce.cole.basic.util.HttpUtil;
 import cn.tanziquan.produce.cole.configure.properties.DdtalkEnvProperties;
+import cn.tanziquan.produce.cole.ddtalkapp.dto.GetUserInfoResponse;
+import cn.tanziquan.produce.cole.ddtalkapp.dto.SSOUserInfo;
 import com.dingtalk.open.client.ServiceFactory;
-import com.dingtalk.open.client.api.model.corp.SsoUserInfo;
 import com.dingtalk.open.client.api.service.corp.SsoService;
-import com.dingtalk.open.client.api.service.isv.IsvService;
-import com.dingtalk.open.client.common.SdkInitException;
-import com.dingtalk.open.client.common.ServiceNotExistException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class DdtalkIndexController {
 
     private static final Logger logger = LoggerFactory.getLogger(DdtalkIndexController.class);
-    private SsoUserInfo userInfo;
 
 
     @Autowired
@@ -48,7 +47,9 @@ public class DdtalkIndexController {
             SsoService ssoService = serviceFactory.getOpenService(SsoService.class);
             String token = ssoService.getSSOToken(ddtalkEnvProperties.getCorpId(), ddtalkEnvProperties.getCorpSecret());
             logger.info("token:{},", token);
-            SsoUserInfo userInfo = ssoService.getSSOUserinfo(token, code);
+            GetUserInfoResponse response = HttpUtil.execution("/sso/getuserinfo", GetUserInfoResponse.class);
+            SSOUserInfo userInfo = response.getUser_info();
+            logger.info("userid:{},userName:{}", userInfo.getUserid(), userInfo.getName());
         } catch (Exception e) {
             logger.error("get sso error", e);
         }
