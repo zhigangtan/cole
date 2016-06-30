@@ -1,21 +1,10 @@
 package cn.tanziquan.produce.cole.web.ddtalk;
 
 import cn.tanziquan.produce.cole.configure.properties.DdtalkEnvProperties;
-import cn.tanziquan.produce.cole.data.domain.DdtalkApp;
-import cn.tanziquan.produce.cole.data.domain.DdtalkCropAuth;
 import cn.tanziquan.produce.cole.util.DingTalkEncryptException;
 import cn.tanziquan.produce.cole.util.DingTalkEncryptor;
-import cn.tanziquan.produce.cole.web.ddtalk.helper.ServiceHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.vo.Encrypt;
 import com.alibaba.fastjson.JSONObject;
-import com.dingtalk.open.client.ServiceFactory;
-import com.dingtalk.open.client.api.model.corp.CorpUserDetail;
-import com.dingtalk.open.client.api.model.corp.CorpUserDetailList;
-import com.dingtalk.open.client.api.model.corp.Department;
-import com.dingtalk.open.client.api.model.isv.CorpAuthInfo;
-import com.dingtalk.open.client.api.model.isv.CorpAuthSuiteCode;
-import com.dingtalk.open.client.api.service.corp.CorpDepartmentService;
-import com.dingtalk.open.client.api.service.corp.CorpUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -24,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
