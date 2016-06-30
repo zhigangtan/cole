@@ -61,7 +61,6 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
     @Autowired
     private BuildProperties buildProperties;
 
-
     @Override
     public void gitDepoly(String appNo, String json) {
         try {
