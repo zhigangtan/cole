@@ -43,7 +43,7 @@ import java.util.UUID;
 public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
 
     private static final Logger logger = LoggerFactory.getLogger(GitHubDepolyServiceImpl.class);
-    
+
     @Autowired
     private IAppInfoService appInfoService;
 
@@ -98,6 +98,7 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             develop.setRuntimeStatus(Constant.NO_S);
             develop.setCompilerStatus(Constant.COMPILEDING);
             develop.setCreatedAt(DateUtil.getCurrentTimestamp());
+            develop.setSerialNo(appRelease.getSerialNo());
             appReleaseDevelopMapper.insertSelective(develop);
 
             RequestConext requestConext = new RequestConext();
