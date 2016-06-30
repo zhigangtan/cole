@@ -10,6 +10,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -20,6 +22,8 @@ import java.io.IOException;
  * @version 0.0.1
  */
 public class HttpUtil {
+
+    private static final Logger logger = LoggerFactory.getLogger(HttpUtil.class);
 
     public static <T> T execution(String uriPath, Class<T> type) throws Exception {
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -37,7 +41,9 @@ public class HttpUtil {
                     int status = response.getStatusLine().getStatusCode();
                     if (status >= 200 && status < 300) {
                         HttpEntity entity = response.getEntity();
-                        return JSON.parseObject(EntityUtils.toString(entity), type);
+                        String jsonStr = EntityUtils.toString(entity);
+                        logger.info("response str:{}", jsonStr);
+                        return JSON.parseObject(jsonStr, type);
                     } else {
                         throw new ClientProtocolException("Unexpected response status: " + status);
                     }

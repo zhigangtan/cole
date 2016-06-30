@@ -9,10 +9,14 @@ import cn.tanziquan.produce.cole.data.persistence.CorpAuthInfoMapper;
 import cn.tanziquan.produce.cole.data.persistence.DdtalkAppMapper;
 import cn.tanziquan.produce.cole.data.persistence.DdtalkCropAuthMapper;
 import cn.tanziquan.produce.cole.ddtalkapp.service.IDdtalkAppService;
+import com.dingtalk.open.client.ServiceFactory;
+import com.dingtalk.open.client.api.service.corp.CallBackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -67,5 +71,29 @@ public class DdtalkAppServiceImpl implements IDdtalkAppService {
     @Override
     public void insertCorpAuthInfo(CorpAuthInfo corpAuthInfo) {
         corpAuthInfoMapper.insertSelective(corpAuthInfo);
+    }
+
+    @Override
+    public void registerCallBack(String token) {
+        try {
+            ServiceFactory serviceFactory = ServiceFactory.getInstance();
+            CallBackService callBackService = serviceFactory.getOpenService(CallBackService.class);
+
+            List<String> callBackTag=new ArrayList<>();
+            callBackTag.add("user_add_org");
+            callBackTag.add("user_modify_org");
+            callBackTag.add("user_leave_org");
+            callBackTag.add("org_admin_add");
+            callBackTag.add("org_admin_remove");
+            callBackTag.add("org_dept_create");
+            callBackTag.add("org_dept_modify");
+            callBackTag.add("org_dept_remove");
+            callBackTag.add("org_remove");
+            String callBackUrl="http://cole.tanziquan.com/register/receive";
+            callBackService.registerCallBack(token, callBackTag,"zhigangtan00001","dwlq23ebzgb90woi8lzuldaim85arxcqvtat32ovwct",callBackUrl);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

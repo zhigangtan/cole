@@ -23,4 +23,7 @@ public interface IDdtalkAppService {
 
 
     public void insertCorpAuthInfo(CorpAuthInfo corpAuthInfo);
+
+
+    public void registerCallBack(String token);
 }

@@ -6,8 +6,6 @@ import cn.tanziquan.produce.cole.data.domain.DdtalkCropAuth;
 import cn.tanziquan.produce.cole.ddtalkapp.service.IDdtalkAppService;
 import cn.tanziquan.produce.cole.util.DingTalkEncryptException;
 import cn.tanziquan.produce.cole.util.DingTalkEncryptor;
-import cn.tanziquan.produce.cole.util.Env;
-import cn.tanziquan.produce.cole.web.ddtalk.helper.AuthHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.helper.ServiceHelper;
 import cn.tanziquan.produce.cole.web.ddtalk.vo.Encrypt;
 import com.alibaba.fastjson.JSONObject;
@@ -19,9 +17,6 @@ import com.dingtalk.open.client.api.model.isv.CorpAuthInfo;
 import com.dingtalk.open.client.api.model.isv.CorpAuthSuiteCode;
 import com.dingtalk.open.client.api.service.corp.CorpDepartmentService;
 import com.dingtalk.open.client.api.service.corp.CorpUserService;
-import com.dingtalk.open.client.api.service.isv.IsvService;
-import com.dingtalk.open.client.common.SdkInitException;
-import com.dingtalk.open.client.common.ServiceNotExistException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -203,6 +198,12 @@ public class DdtalkController {
                         }
                     } catch (Exception e) {
                        logger.error("CorpDepartmentService");
+                    }
+
+                    try{
+                        ddtalkAppService.registerCallBack(corpToken);
+                    }catch (Exception e) {
+                        logger.error("registerCallBack",e);
                     }
 
 
