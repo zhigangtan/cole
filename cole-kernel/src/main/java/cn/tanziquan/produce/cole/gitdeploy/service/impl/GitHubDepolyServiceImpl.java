@@ -1,6 +1,7 @@
 package cn.tanziquan.produce.cole.gitdeploy.service.impl;
 
 import cn.tanziquan.produce.cole.appinfo.service.IAppInfoService;
+import cn.tanziquan.produce.cole.appinfo.service.IAppReleaseService;
 import cn.tanziquan.produce.cole.basic.configure.properties.BuildProperties;
 import cn.tanziquan.produce.cole.basic.constant.Constant;
 import cn.tanziquan.produce.cole.basic.constant.ProEnvironmentEnum;
@@ -47,8 +48,9 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
     @Autowired
     private AppWebhooksRecordMapper appWebhooksRecordMapper;
 
+
     @Autowired
-    private AppReleaseMapper appReleaseMapper;
+    private IAppReleaseService appReleaseService;
 
     @Autowired
     private AppReleaseDevelopMapper appReleaseDevelopMapper;
@@ -87,7 +89,7 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             appRelease.setRecordId(record.getId());
             appRelease.setBranch(branch);
             appRelease.setStage(ProEnvironmentEnum.DEVELOP.getIndex().shortValue());
-            appReleaseMapper.insertSelective(appRelease);
+            appReleaseService.insertOrUpdateAppRelease(appRelease);
 
             AppReleaseDevelop develop = new AppReleaseDevelop();
             develop.setReleaseId(appRelease.getId());
