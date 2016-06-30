@@ -30,6 +30,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+import java.util.UUID;
+
 /**
  * GitHubDepolyServiceImpl
  *
@@ -89,6 +92,7 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             appRelease.setRecordId(record.getId());
             appRelease.setBranch(branch);
             appRelease.setStage(ProEnvironmentEnum.DEVELOP.getIndex().shortValue());
+            appRelease.setSerialNo(UUID.randomUUID().toString());
             appReleaseService.insertOrUpdateAppRelease(appRelease);
 
             AppReleaseDevelop develop = new AppReleaseDevelop();

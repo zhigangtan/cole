@@ -31,7 +31,7 @@ public class AppReleaseServiceImpl implements IAppReleaseService {
         List<AppRelease> appReleases= appReleaseMapper.selectByExample(criteria);
         if(!CollectionUtils.isEmpty(appReleases)){
             appRelease.setId(appReleases.get(0).getId());
-            appReleaseMapper.updateByPrimaryKey(appRelease);
+            appReleaseMapper.updateByPrimaryKeySelective(appRelease);
         }else{
             appReleaseMapper.insertSelective(appRelease);
         }
