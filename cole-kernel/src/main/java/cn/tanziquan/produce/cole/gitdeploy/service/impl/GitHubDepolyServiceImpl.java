@@ -43,8 +43,7 @@ import java.util.UUID;
 public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
 
     private static final Logger logger = LoggerFactory.getLogger(GitHubDepolyServiceImpl.class);
-
-
+    
     @Autowired
     private IAppInfoService appInfoService;
 
