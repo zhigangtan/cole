@@ -19,6 +19,8 @@ public class RequestConext {
     private String buildPath;
 
     private String codePath;
+    
+    private String outfile;
 
     public String getAppNo() {
         return appNo;
@@ -50,5 +52,13 @@ public class RequestConext {
 
     public void setCodePath(String codePath) {
         this.codePath = codePath;
+    }
+
+    public String getOutfile() {
+        return outfile;
+    }
+
+    public void setOutfile(String outfile) {
+        this.outfile = outfile;
     }
 }

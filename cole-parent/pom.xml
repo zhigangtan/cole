@@ -168,7 +168,11 @@
                 <artifactId>httpclient</artifactId>
                 <version>4.5.2</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.hierynomus</groupId>
+                <artifactId>sshj</artifactId>
+                <version>0.15.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <repositories>

@@ -19,6 +19,7 @@ import cn.tanziquan.produce.cole.gitdeploy.dto.handler.RequestConext;
 import cn.tanziquan.produce.cole.gitdeploy.dto.handler.ResponseDto;
 import cn.tanziquan.produce.cole.gitdeploy.handler.AppPackageHandler;
 import cn.tanziquan.produce.cole.gitdeploy.handler.GitPullCommandHandler;
+import cn.tanziquan.produce.cole.gitdeploy.handler.UploadFileHandler;
 import cn.tanziquan.produce.cole.gitdeploy.service.IGitHubDepolyService;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -107,10 +108,14 @@ public class GitHubDepolyServiceImpl implements IGitHubDepolyService {
             requestConext.setBuildPath(buildProperties.getPath());
             GitPullCommandHandler gitPullhandler = new GitPullCommandHandler();
             AppPackageHandler packageHandler = new AppPackageHandler();
+
+            UploadFileHandler uploadFileHandler = new UploadFileHandler();
+            packageHandler.setNextHandler(uploadFileHandler);
             gitPullhandler.setNextHandler(packageHandler);
             ResponseDto handlerResponse = gitPullhandler.handleRequest(requestConext);
+
             develop.setCompilerStatus(Constant.COMPILEDFAIL);
-            if(handlerResponse.isSuccess()){
+            if (handlerResponse.isSuccess()) {
                 develop.setCompilerStatus(Constant.COMPILEDSUESS);
             }
             appReleaseDevelopMapper.updateByPrimaryKeySelective(develop);

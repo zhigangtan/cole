@@ -50,6 +50,7 @@ public class AppPackageHandler extends AbstractHandler {
                     if(StringUtils.isNotBlank(data.getOutfile())){
                         commandLineHelper.executeScript(codePath,"mkdir "+data.getOutfile());
                     }
+                    conext.setOutfile(data.getOutfile());
                     List<String> afterSuccesScripts = data.getAfter_success();
                     if (!CollectionUtils.isEmpty(afterSuccesScripts)) {
                         responseDto.setSuccess(commandLineHelper.executeScript(codePath, afterSuccesScripts));
